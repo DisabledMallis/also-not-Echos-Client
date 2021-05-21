@@ -24,6 +24,9 @@ void CInstance_Hook::init() {
 	if (!sigAddr) return;
 	if (MH_CreateHook((void*)sigAddr, &CInstance_Callback, reinterpret_cast<LPVOID*>(&_CInstance)) == MH_OK) {
 		MH_EnableHook((void*)sigAddr);
-		Utils::DebugLogF("Successfully hooked the Client Instance");
+		Utils::DebugLogF("Successfully completed Client Instance Hook!");
+	}
+	else {
+		Utils::DebugLogF("Failed to create Client Instance Hook :/");
 	}
 }
