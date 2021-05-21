@@ -15,6 +15,14 @@ bool init = false;
 
 Renderer* renderer = new Renderer();
 
+#include <d3d11.h>
+#include <d2d1_1.h>
+#include <dwrite_1.h>
+
+#pragma comment(lib, "d2d1.lib")
+#pragma comment(lib, "d3d11.lib")
+#pragma comment(lib, "dwrite.lib")
+
 HRESULT __fastcall callback(IDXGISwapChain* pChain, UINT syncInterval, UINT flags) {
     if (!init) {
         pSwapChain = pChain;
@@ -22,32 +30,16 @@ HRESULT __fastcall callback(IDXGISwapChain* pChain, UINT syncInterval, UINT flag
         if (SUCCEEDED(pSwapChain->GetDevice(__uuidof(pDevice), reinterpret_cast<void**>(&pDevice)))) {
             pSwapChain->GetDevice(__uuidof(pDevice), reinterpret_cast<void**>(&pDevice));
             pDevice->GetImmediateContext(&pContext);
-
-            renderer->init(pDevice, pContext);
         }
 
         init = true;
     };
 
-    ID3D11Texture2D* renderTargetTexture = nullptr;
+    renderer->init(pChain, pDevice, pContext);
 
-    if (SUCCEEDED(pSwapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), reinterpret_cast<LPVOID*>(&renderTargetTexture))))
-    {
-        pDevice->CreateRenderTargetView(renderTargetTexture, NULL, &renderTargetView);
-        renderTargetTexture->Release();
-    }
+    renderer->drawString(L"Test", 20, Vec2(10, 10), _RGBA(50, 170, 200));
 
-    pContext->OMSetRenderTargets(1, &renderTargetView, nullptr);
-
-    for (auto C : rClient->categories) {
-        for (auto M : C->modules) {
-            M->onRender(renderer);
-        }
-    }
-
-    /* */
-
-    renderTargetView->Release();
+    renderer->d2dRenderTarget->Release();
 
     return oPresent(pChain, syncInterval, flags);
 }

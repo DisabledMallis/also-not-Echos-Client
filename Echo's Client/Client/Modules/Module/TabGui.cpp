@@ -9,11 +9,11 @@ void TabGui::onRender(class Renderer* renderer) {
 
 	std::wstring logo = std::wstring(client->name.begin(), client->name.end());
 
-	renderer->drawString(logo, textSize, Vec2(res.x - ((logo.length() + 1) * (textSize / 2)), res.y - (textSize * 2)), RGBA_FW1(74, 152, 255).toUint32());
+	//renderer->drawString(logo, textSize, Vec2(res.x - ((logo.length() + 1) * (textSize / 2)), res.y - (textSize * 2)), RGBA_FW1(74, 152, 255).toUint32());
 
 	for (auto C : client->categories) {
 		Vec2 textPos = Vec2(15, (cIndex * (textSize + 5)) + 15);
-		renderer->drawString(std::wstring(C->name.begin(), C->name.end()), textSize, (sCat ? sCIndex == cIndex ? Vec2(textPos.x + 10, textPos.y) : textPos : textPos), RGBA_FW1(74, 152, 255).toUint32());
+		//renderer->drawString(std::wstring(C->name.begin(), C->name.end()), textSize, (sCat ? sCIndex == cIndex ? Vec2(textPos.x + 10, textPos.y) : textPos : textPos), RGBA_FW1(74, 152, 255).toUint32());
 		cIndex++;
 	}
 }

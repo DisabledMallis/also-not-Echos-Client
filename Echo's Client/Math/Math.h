@@ -65,6 +65,17 @@ struct AABB {
 	Vec3 upper;
 };
 
+class _RGBA {
+public:
+	float r;
+	float g;
+	float b;
+	float a;
+	_RGBA(float r, float g, float b, float a = 1) {
+		this->r = r; this->g = b; this->b = b; this->a = a;
+	}
+};
+
 class RGBA_FW1 {
 public:
 	float r;
