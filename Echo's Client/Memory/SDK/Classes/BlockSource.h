@@ -10,24 +10,6 @@ public:
 	Vec3i chunkPos; //0x006C
 };
 
-class BlockPos {
-public:
-	BlockPos(Vec3* pos) {
-		using bp = BlockPos * (__fastcall*)(BlockPos*, Vec3*);
-		static bp _bp = reinterpret_cast<bp>(Utils::FindSig("F3 0F 10 1A 4C 8B C1 F3 0F 10 4A ? F3 0F 10 52 ? F3 0F 2C CB 81 F9 ? ? ? ? 74 1E 66 0F 6E C1"));
-		_bp(this, pos);
-	}
-};
-
-class ChunkPos {
-public:
-	ChunkPos(Vec3* pos) {
-		using cp = ChunkPos * (__fastcall*)(ChunkPos*, Vec3*);
-		static cp _cp = reinterpret_cast<cp>(Utils::FindSig("F3 0F 10 0A 4C 8B C9"));
-		_cp(this, pos);
-	}
-};
-
 class BlockSource {
 public:
 	Block* getBlock(Vec3i blockPos) {
