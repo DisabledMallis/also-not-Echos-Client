@@ -165,6 +165,7 @@
     <ClCompile Include="Memory\Hooks\Hook\Actor.cpp" />
     <ClCompile Include="Memory\Hooks\Hook\ClientInstance.cpp" />
     <ClCompile Include="Memory\Hooks\Hook\GameMode.cpp" />
+    <ClCompile Include="Memory\Hooks\Hook\KeyItem.cpp" />
     <ClCompile Include="Memory\SDK\Minecraft.cpp" />
     <ClCompile Include="Utils\Utils.cpp" />
   </ItemGroup>
@@ -178,6 +179,7 @@
     <ClInclude Include="Memory\Hooks\Hook\Actor.h" />
     <ClInclude Include="Memory\Hooks\Hook\ClientInstance.h" />
     <ClInclude Include="Memory\Hooks\Hook\GameMode.h" />
+    <ClInclude Include="Memory\Hooks\Hook\KeyItem.h" />
     <ClInclude Include="Memory\SDK\Classes\Actor.h" />
     <ClInclude Include="Memory\SDK\Classes\Block.h" />
     <ClInclude Include="Memory\SDK\Classes\BlockSource.h" />
