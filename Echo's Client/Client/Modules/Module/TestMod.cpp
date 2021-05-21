@@ -13,7 +13,7 @@ void TestMod::onTick() {
 	//
 }
 
-/*bool forEachDimension(const Dimension& dimension) {
+bool forEachDimensionCallback(const Dimension& dimension) {
 	auto d = (Dimension*)&dimension;
 	Utils::DebugLogF(std::to_string(d->height).c_str());
 
@@ -22,22 +22,10 @@ void TestMod::onTick() {
 	Utils::DebugLogF(o.str().c_str());
 
 	return false;
-}*/
-
-bool forEachPlayer(const Player& player) {
-	Utils::DebugLogF("!");
-	return false;
 }
 
 static bool once = false;
 
 void TestMod::onGmTick(GameMode* GM) {
-	if (player != nullptr) {
-		if (!once) {
-			once = true;
-		}
-	}
-	else {
-		once = false;
-	}
+	//
 }
