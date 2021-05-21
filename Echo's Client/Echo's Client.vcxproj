@@ -188,6 +188,7 @@
     <ClInclude Include="Memory\SDK\Classes\GameMode.h" />
     <ClInclude Include="Memory\SDK\Classes\ItemStack.h" />
     <ClInclude Include="Memory\SDK\Classes\Level.h" />
+    <ClInclude Include="Memory\SDK\Classes\MinecraftGame.h" />
     <ClInclude Include="Memory\SDK\Classes\Player.h" />
     <ClInclude Include="Memory\SDK\Classes\PlayerInventory.h" />
     <ClInclude Include="Memory\SDK\Minecraft.h" />
