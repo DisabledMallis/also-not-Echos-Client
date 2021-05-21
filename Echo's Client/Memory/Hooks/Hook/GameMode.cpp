@@ -28,6 +28,9 @@ void GameMode_Hook::init() {
 
 	if (MH_CreateHook((void*)VTable[10], &GMTick_Callback, reinterpret_cast<LPVOID*>(&_GM_Tick)) == MH_OK) {
 		MH_EnableHook((void*)VTable[10]);
-		Utils::DebugLogF("GameMode Hook Success!");
+		Utils::DebugLogF("Successfully completed GameMode Hook!");
+	}
+	else {
+		Utils::DebugLogF("Failed to create GameMode Hook :/");
 	}
 }
