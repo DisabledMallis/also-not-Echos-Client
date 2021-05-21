@@ -162,6 +162,7 @@
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="Math\Math.cpp" />
     <ClCompile Include="Memory\Hooks\Hook.cpp" />
+    <ClCompile Include="Memory\Hooks\Hook\Actor.cpp" />
     <ClCompile Include="Memory\Hooks\Hook\ClientInstance.cpp" />
     <ClCompile Include="Memory\Hooks\Hook\GameMode.cpp" />
     <ClCompile Include="Memory\SDK\Minecraft.cpp" />
@@ -174,6 +175,7 @@
     <ClInclude Include="Client\Modules\Module\TestMod.h" />
     <ClInclude Include="Math\Math.h" />
     <ClInclude Include="Memory\Hooks\Hook.h" />
+    <ClInclude Include="Memory\Hooks\Hook\Actor.h" />
     <ClInclude Include="Memory\Hooks\Hook\ClientInstance.h" />
     <ClInclude Include="Memory\Hooks\Hook\GameMode.h" />
     <ClInclude Include="Memory\SDK\Classes\Actor.h" />
