@@ -129,7 +129,7 @@ public:
 	virtual void setTime(int);
 	virtual unsigned int getSeed(void);
 	virtual class  /*class BlockPos*/Vec3i* getDefaultSpawn(void);
-	virtual void setDefaultSpawn(class BlockPos const&);
+	virtual void setDefaultSpawn(/*class BlockPos*/Vec3i const&);
 	virtual class  /*class BlockPos*/Vec3i* getDefaultSpawnA(void);
 	virtual void setDefaultGameType(int GameType);
 	virtual int getDefaultGameType(void);
