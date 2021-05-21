@@ -11,4 +11,5 @@ public:
 	void onTick();
 
 	void onGmTick(GameMode*);
+	void onKey(uint64_t, bool, bool*);
 };
