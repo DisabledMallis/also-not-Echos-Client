@@ -2,7 +2,7 @@
 
 class Material {
 public:
-	int type; //0x0000
+	uintptr_t unknown;
 	char pad_0001[4]; //0x0001
 	bool isSolidBlocking; //0x0005
 	bool isDestroyable; //0x0006
