@@ -12,6 +12,8 @@ Client::Client(std::string name) {
 #include "../Memory/Hooks/Hook/GameMode.h"
 #include "../Memory/Hooks/Hook/Actor.h"
 
+#include "../Memory/Hooks/Hook/KeyItem.h"
+
 #include "Modules/Module/TestMod.h"
 
 void Client::init() {
@@ -31,6 +33,10 @@ void Client::init() {
 	/* Initialize Actor Hooks */
 	Actor_Hook* actor_Hook = new Actor_Hook();
 	actor_Hook->init();
+
+	/* Initialize AVKeyItem Hook */
+	KeyItem_Hook* key_Hook = new KeyItem_Hook();
+	key_Hook->init();
 
 	/* Initialize Categories */
 
