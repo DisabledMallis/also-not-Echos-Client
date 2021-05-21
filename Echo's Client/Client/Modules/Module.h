@@ -25,6 +25,8 @@ public:
 
 	virtual void onGmTick(GameMode*) {};
 
+	virtual void onKey(uint64_t, bool, bool*) {};
+
 	Module(class Client*, class Category*, std::string);
 
 	ClientInstance* instance;
