@@ -2,6 +2,7 @@
 #include <Windows.h>
 #include <vector>
 #include <string>
+#include <map>
 
 #include "Categories/Category.h"
 #include "Modules/Module.h"
@@ -18,6 +19,7 @@ public:
 
 	Client(std::string name);
 
+	std::map<uint64_t, bool> keyMap;
+
 	void init();
 };
-
