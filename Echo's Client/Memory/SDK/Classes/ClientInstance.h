@@ -17,4 +17,7 @@ public:
 			offset = *reinterpret_cast<int*>(Utils::FindSig("48 8B 81 ? ? ? ? C3 CC CC CC CC CC CC CC CC CC CC CC CC 48 89 91 ? ? ? ?") + 3);
 		return *reinterpret_cast<Player**>((uintptr_t)(this) + offset);
 	}
+	class MinecraftGame* minecraftGame() {
+		return *reinterpret_cast<MinecraftGame**>((uintptr_t)(this) + 0x98);
+	}
 };
