@@ -13,6 +13,14 @@ void TestMod::onTick() {
 	//
 }
 
+void TestMod::onKey(uint64_t key, bool isDown, bool* cancelOrigin) {
+	if (isDown) {
+		std::ostringstream o;
+		o << "Key Pressed Down: " << std::hex << key << std::endl;
+		Utils::DebugLogF(o.str().c_str());
+	}
+}
+
 bool forEachDimensionCallback(const Dimension& dimension) {
 	auto d = (Dimension*)&dimension;
 	Utils::DebugLogF(std::to_string(d->height).c_str());
@@ -32,6 +40,4 @@ void TestMod::onGmTick(GameMode* GM) {
 		}
 	}
 	else once = false;
-
-	/* */
 }
