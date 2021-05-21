@@ -406,4 +406,10 @@ public:
 		static UpdateOwnerChunk _UpdateOwnerChunk = reinterpret_cast<UpdateOwnerChunk>(Utils::FindSig("48 89 5C 24 ? 48 89 74 24 ? 57 48 81 EC ? ? ? ? 48 8B D9 48 8B 89 ? ? ? ? 48 85 C9"));
 		_UpdateOwnerChunk(this);
 	}
+
+	void setInvisible(bool isTrue) {
+		using SI = void(__thiscall*)(Actor*, bool);
+		static SI _SI = reinterpret_cast<SI>(Utils::FindSig("48 89 5C 24 ? 48 89 74 24 ? 57 48 83 EC 20 0F B6 FA 48"));
+		_SI(this, isTrue);
+	}
 };
