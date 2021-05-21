@@ -48,12 +48,6 @@ public:
 	class WorldGenerator* worldGenerator; //0x0108
 	class Weather* weather; //0x0110
 	char pad_0118[48]; //0x0118
-public:
-	void forEachPlayer(std::function<bool(class Player const&)> f) {
-		using FEP = void(__fastcall*)(Dimension*, std::function<bool(class Player const&)>);
-		static FEP _FEP = reinterpret_cast<FEP>(Utils::FindSig("48 89 5C 24 ? 48 89 74 24 ? 57 48 83 EC ? ? ? 48 8B DA 48 8B F9  48 3B CA ? ? 48 8B 49 ?"));
-		_FEP(this, f);
-	}
 };
 
 class Weather {
