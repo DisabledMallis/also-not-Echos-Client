@@ -8,7 +8,6 @@ D3D11PresentHook oPresent = nullptr;
 IDXGISwapChain* pSwapChain = nullptr;
 ID3D11Device* pDevice = nullptr;
 ID3D11DeviceContext* pContext = nullptr;
-ID3D11Texture2D* pBackBuffer = nullptr;
 ID3D11RenderTargetView* renderTargetView = nullptr;
 
 Client* rClient;
@@ -45,6 +44,8 @@ HRESULT __fastcall callback(IDXGISwapChain* pChain, UINT syncInterval, UINT flag
             M->onRender(renderer);
         }
     }
+
+    /* */
 
     renderTargetView->Release();
 
