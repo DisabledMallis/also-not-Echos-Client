@@ -1,5 +1,4 @@
 #include "TestMod.h"
-#include "../../../Utils/Utils.h"
 
 void TestMod::onEnable() {
 	//
@@ -19,6 +18,10 @@ void TestMod::onKey(uint64_t key, bool isDown, bool* cancelOrigin) {
 		o << "Key Pressed Down: " << std::hex << key << std::endl;
 		Utils::DebugLogF(o.str().c_str());
 	}
+}
+
+void TestMod::onRender(class Renderer* renderer) {
+	renderer->drawString(L"Test", 20.f, Vec2(30.f, 30.f), 0xff60c8d1);
 }
 
 bool forEachDimensionCallback(const Dimension& dimension) {

@@ -12,4 +12,5 @@ public:
 
 	void onGmTick(GameMode*);
 	void onKey(uint64_t, bool, bool*);
+	void onRender(class Renderer*);
 };

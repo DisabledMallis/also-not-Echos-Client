@@ -1,5 +1,6 @@
 #include "SwapChain.h"
 #include "../../../Client/Client.h"
+#include "../../../Utils/Renderer.h"
 
 typedef HRESULT(__fastcall* D3D11PresentHook) (IDXGISwapChain* pChain, UINT syncInterval, UINT flags);
 D3D11PresentHook oPresent = nullptr;
@@ -10,13 +11,12 @@ ID3D11DeviceContext* pContext = nullptr;
 ID3D11Texture2D* pBackBuffer = nullptr;
 ID3D11RenderTargetView* renderTargetView = nullptr;
 
-IFW1Factory* pFW1Factory = nullptr;
-IFW1FontWrapper* pFontWrapper = nullptr;
-
+Client* rClient;
 bool init = false;
 
+Renderer* renderer = new Renderer();
+
 HRESULT __fastcall callback(IDXGISwapChain* pChain, UINT syncInterval, UINT flags) {
-    Utils::DebugLogF("!");
     if (!init) {
         pSwapChain = pChain;
 
@@ -24,9 +24,7 @@ HRESULT __fastcall callback(IDXGISwapChain* pChain, UINT syncInterval, UINT flag
             pSwapChain->GetDevice(__uuidof(pDevice), reinterpret_cast<void**>(&pDevice));
             pDevice->GetImmediateContext(&pContext);
 
-            FW1CreateFactory(FW1_VERSION, &pFW1Factory);
-            pFW1Factory->CreateFontWrapper(pDevice, L"Bahnschrift", &pFontWrapper);
-            pFW1Factory->Release();
+            renderer->init(pDevice, pContext);
         }
 
         init = true;
@@ -42,13 +40,11 @@ HRESULT __fastcall callback(IDXGISwapChain* pChain, UINT syncInterval, UINT flag
 
     pContext->OMSetRenderTargets(1, &renderTargetView, nullptr);
 
-    const wchar_t* text = L"Dx11 SwapChain Hook :P";
-    float size = 23.0f;
-    float x = 20.0f;
-    float y = 20.0f;
-    unsigned int color = 0xff25db9c;
-
-    pFontWrapper->DrawString(pContext, text, size, x, y, color, FW1_RESTORESTATE);
+    for (auto C : rClient->categories) {
+        for (auto M : C->modules) {
+            M->onRender(renderer);
+        }
+    }
 
     renderTargetView->Release();
 
@@ -56,6 +52,7 @@ HRESULT __fastcall callback(IDXGISwapChain* pChain, UINT syncInterval, UINT flag
 }
 
 void SwapChain_Hook::init() {
+    rClient = client;
     WNDCLASSEX wc{};
     wc.cbSize = sizeof(wc);
     wc.lpfnWndProc = DefWindowProc;

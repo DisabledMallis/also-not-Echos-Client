@@ -168,6 +168,7 @@
     <ClCompile Include="Memory\Hooks\Hook\KeyItem.cpp" />
     <ClCompile Include="Memory\Hooks\Hook\SwapChain.cpp" />
     <ClCompile Include="Memory\SDK\Minecraft.cpp" />
+    <ClCompile Include="Utils\Renderer.cpp" />
     <ClCompile Include="Utils\Utils.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -194,6 +195,7 @@
     <ClInclude Include="Memory\SDK\Classes\Player.h" />
     <ClInclude Include="Memory\SDK\Classes\PlayerInventory.h" />
     <ClInclude Include="Memory\SDK\Minecraft.h" />
+    <ClInclude Include="Utils\Renderer.h" />
     <ClInclude Include="Utils\Utils.h" />
   </ItemGroup>
   <ItemGroup>

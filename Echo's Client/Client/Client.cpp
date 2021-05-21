@@ -1,5 +1,6 @@
 #include "Client.h"
 #include "../Utils/Utils.h"
+#include "../Utils/Renderer.h"
 
 Client::Client(std::string name) {
 	this->name = name;

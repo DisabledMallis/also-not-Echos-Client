@@ -6,6 +6,9 @@
 
 #include "../../Memory/SDK/Minecraft.h"
 
+#include "../../Utils/Utils.h"
+#include "../../Utils/Renderer.h"
+
 class Module {
 public:
 	class Client* client;
@@ -26,6 +29,8 @@ public:
 	virtual void onGmTick(GameMode*) {};
 
 	virtual void onKey(uint64_t, bool, bool*) {};
+
+	virtual void onRender(class Renderer*) {};
 
 	Module(class Client*, class Category*, std::string);
 
