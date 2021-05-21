@@ -7,7 +7,7 @@ void TabGui::onRender(class Renderer* renderer) {
 	Vec2 res = instance->guiData()->res;
 	float textSize = instance->guiData()->GuiScale() * 10;
 
-	std::wstring logo = L"Echo's Client";
+	std::wstring logo = std::wstring(client->name.begin(), client->name.end());
 
 	renderer->drawString(logo, textSize, Vec2(res.x - ((logo.length() + 1) * (textSize / 2)), res.y - (textSize * 2)), RGBA_FW1(74, 152, 255).toUint32());
 
