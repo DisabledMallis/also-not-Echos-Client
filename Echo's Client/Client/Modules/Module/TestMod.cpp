@@ -24,8 +24,14 @@ bool forEachDimensionCallback(const Dimension& dimension) {
 	return false;
 }
 
-static bool once = false;
-
 void TestMod::onGmTick(GameMode* GM) {
-	//
+	static bool once = false;
+	if (player != nullptr) {
+		if (!once) {
+			once = true;
+		}
+	}
+	else once = false;
+
+	/* */
 }
