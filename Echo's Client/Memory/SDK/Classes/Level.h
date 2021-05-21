@@ -121,16 +121,16 @@ public:
 	virtual void potionSplash(Vec3 const&, /*mce::Color const&*/ __int64 color, bool);
 	virtual void checkAndHandleWater(class Actor*);
 	virtual void checkMaterial(AABB const&, class MaterialType, class BlockSource&);
-	virtual void extinguishFire(class BlockSource&, class BlockPos const&, unsigned char);
+	virtual void extinguishFire(class BlockSource&,  /*class BlockPos*/Vec3i const&, unsigned char);
 	virtual __int64 findPath(class Actor&, class Actor&, class NavigationComponent&);
 	virtual __int64 findPath(class Actor&, int, int, int, class NavigationComponent&);
 	virtual void updateSleepingPlayerList(void);
 	virtual __int64 getTime(void);
 	virtual void setTime(int);
 	virtual unsigned int getSeed(void);
-	virtual class BlockPos* getDefaultSpawn(void);
+	virtual class  /*class BlockPos*/Vec3i* getDefaultSpawn(void);
 	virtual void setDefaultSpawn(class BlockPos const&);
-	virtual class BlockPos* getDefaultSpawnA(void);
+	virtual class  /*class BlockPos*/Vec3i* getDefaultSpawnA(void);
 	virtual void setDefaultGameType(int GameType);
 	virtual int getDefaultGameType(void);
 	virtual void setDifficulty(int Difficulty);
@@ -249,11 +249,11 @@ private:
 	virtual void Function212();
 	virtual void Function213();
 public:
-	virtual void destroyBlock(class BlockSource&, class BlockPos const&, bool);
+	virtual void destroyBlock(class BlockSource&, /*class BlockPos*/Vec3i const&, bool);
 	virtual void upgradeStorageVersion(class StorageVersion);
 	virtual void suspendAndSave(void);
 	virtual void waitAsyncSuspendWork(void);
-	virtual void _destroyEffect(class BlockPos const&, class Block const&, int);
+	virtual void _destroyEffect( /*class BlockPos*/Vec3i const&, class Block const&, int);
 	/* Lots more but fuck this shit = Jesus Fucking Christ */
 public:
 	char pad_0x0008[0x50]; //0x0008
