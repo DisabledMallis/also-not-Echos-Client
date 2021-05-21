@@ -10,6 +10,7 @@ Client::Client(std::string name) {
 
 #include "../Memory/Hooks/Hook/ClientInstance.h"
 #include "../Memory/Hooks/Hook/GameMode.h"
+#include "../Memory/Hooks/Hook/Actor.h"
 
 #include "Modules/Module/TestMod.h"
 
@@ -26,6 +27,10 @@ void Client::init() {
 	/* Initialize GameMode tick */
 	GameMode_Hook* gm_Hook = new GameMode_Hook();
 	gm_Hook->init();
+
+	/* Initialize Actor Hooks */
+	Actor_Hook* actor_Hook = new Actor_Hook();
+	actor_Hook->init();
 
 	/* Initialize Categories */
 
