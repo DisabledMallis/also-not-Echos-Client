@@ -397,6 +397,10 @@ public:
 		return *reinterpret_cast<class BlockSource**>((uintptr_t)(this) + offset);
 	}
 
+	class Dimension* getDimension() {
+		return *reinterpret_cast<class Dimension**>((uintptr_t)(this) + 0x350);
+	}
+
 	class Level* getMultiPlayerLevel() {
 		return *reinterpret_cast<class Level**>((uintptr_t)(this) + 0x358);
 	}
