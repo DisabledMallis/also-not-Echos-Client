@@ -22,6 +22,7 @@ Client::Client(std::string name) {
 /* Module Includes */
 
 #include "Modules/Module/TestMod.h"
+#include "Modules/Module/TabGui.h"
 
 /* */
 
@@ -61,6 +62,8 @@ void Client::init() {
 	Category* other = new Category(this, "Other");
 
 	/* Initialize Modules */
+
+	TabGui* TabGuiMod = new TabGui(this, other, "TabGui");
 
 	TestMod* testMod = new TestMod(this, other, "Test Module");
 }

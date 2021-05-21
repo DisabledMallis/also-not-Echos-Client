@@ -1,7 +1,7 @@
 #pragma once
 #include <string>
 #include "../Math/Math.h"
-#include "FW1FontWrapper.h"
+#include <FW1FontWrapper.h>
 
 class Renderer {
 public:

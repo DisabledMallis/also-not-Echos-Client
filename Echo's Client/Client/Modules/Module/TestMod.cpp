@@ -21,7 +21,7 @@ void TestMod::onKey(uint64_t key, bool isDown, bool* cancelOrigin) {
 }
 
 void TestMod::onRender(class Renderer* renderer) {
-	renderer->drawString(L"Test", 20.f, Vec2(30.f, 30.f), 0xff60c8d1);
+	//renderer->drawString(L"Test", 20.f, Vec2(30.f, 30.f), 0xff60c8d1);
 }
 
 bool forEachDimensionCallback(const Dimension& dimension) {

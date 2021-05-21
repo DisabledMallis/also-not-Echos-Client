@@ -1,5 +1,6 @@
 #pragma once
 #include "../Minecraft.h"
+#include "GuiData.h"
 #include "ItemStack.h"
 #include "Player.h"
 #include "PlayerInventory.h"
@@ -19,5 +20,9 @@ public:
 	}
 	class MinecraftGame* minecraftGame() {
 		return *reinterpret_cast<MinecraftGame**>((uintptr_t)(this) + 0x98);
+	}
+
+	class GuiData* guiData() {
+		return *reinterpret_cast<GuiData**>((uintptr_t)(this) + 0x4D8);
 	}
 };
