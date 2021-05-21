@@ -32,7 +32,7 @@ class BlockSource {
 public:
 	Block* getBlock(Vec3i blockPos) {
 		using GetBlock = Block * (__thiscall*)(BlockSource*, Vec3i*);
-		GetBlock _GetBlock = reinterpret_cast<GetBlock>(Utils::FindSig("48 89 5C 24 ? 57 48 83 EC 20 48 8B F9 48 8B DA 8B 4A 04 0F BF 47 2A 3B C8 7C 67 0F BF 47 28 3B C8"));
+		static GetBlock _GetBlock = reinterpret_cast<GetBlock>(Utils::FindSig("48 89 5C 24 ? 57 48 83 EC 20 48 8B F9 48 8B DA 8B 4A 04 0F BF 47 2A 3B C8 7C 67 0F BF 47 28 3B C8"));
 		return _GetBlock(this, &blockPos);
 	}
 
