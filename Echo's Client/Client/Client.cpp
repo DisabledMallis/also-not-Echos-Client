@@ -6,6 +6,8 @@ Client::Client(std::string name) {
 	Utils::DebugLogF("Client Instance has been Initialized", std::string(name + "/Logs/Output.txt").c_str(), true);
 }
 
+/* Hook Includes */
+
 #include "../Memory/Hooks/Hook.h"
 
 #include "../Memory/Hooks/Hook/ClientInstance.h"
@@ -14,7 +16,13 @@ Client::Client(std::string name) {
 
 #include "../Memory/Hooks/Hook/KeyItem.h"
 
+#include "../Memory/Hooks/Hook/SwapChain.h"
+
+/* Module Includes */
+
 #include "Modules/Module/TestMod.h"
+
+/* */
 
 void Client::init() {
 
@@ -37,6 +45,11 @@ void Client::init() {
 	/* Initialize AVKeyItem Hook */
 	KeyItem_Hook* key_Hook = new KeyItem_Hook();
 	key_Hook->init();
+
+	/* Initialize SwapChain (Dx11) Hook */
+
+	SwapChain_Hook* swapChain_Hook = new SwapChain_Hook();
+	swapChain_Hook->init();
 
 	/* Initialize Categories */
 
