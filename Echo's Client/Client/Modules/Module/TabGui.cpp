@@ -93,7 +93,10 @@ void TabGui::onKey(uint64_t key, bool isDown, bool* cancelOrigin) {
 				sCIndex--;
 			}
 			else if (sMod) {
-				//
+				if (client->categories.at(sCIndex)->modules.size()) {
+					if (sMIndex == 0) sMIndex = client->categories.at(sCIndex)->modules.size();
+					sMIndex--;
+				}
 			}
 		}
 		if (key == 0x28) { /* Down Arrow */
@@ -105,9 +108,11 @@ void TabGui::onKey(uint64_t key, bool isDown, bool* cancelOrigin) {
 				}
 			}
 			else if (sMod) {
-				sMIndex++;
-				if (sMIndex == client->categories.size()) {
-					sMIndex = 0;
+				if (client->categories.at(sCIndex)->modules.size()) {
+					sMIndex++;
+					if (sMIndex == client->categories.at(sCIndex)->modules.size()) {
+						sMIndex = 0;
+					}
 				}
 			}
 		}
