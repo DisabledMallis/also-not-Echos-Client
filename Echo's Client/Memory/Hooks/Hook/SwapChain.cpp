@@ -35,17 +35,17 @@ HRESULT __fastcall callback(IDXGISwapChain* pChain, UINT syncInterval, UINT flag
         init = true;
     };
 
-    renderer->init(pChain, pDevice, pContext);
+    renderer->init(pChain, pDevice, pContext); /* Initialize Data */
 
-    renderer->beginDraw();
+    renderer->beginDraw(); /* Begin Frame */
 
     for (auto C : rClient->categories) {
-        for (auto M : C->modules) M->onRender(renderer);
+        for (auto M : C->modules) M->onRender(renderer); /* Let onRender handle renderer method calls*/
     }
 
-    renderer->endDraw();
+    renderer->endDraw(); /* End Frame */
 
-    renderer->releaseTarget();
+    renderer->releaseTarget(); /* Release Target Texture */
 
     return oPresent(pChain, syncInterval, flags);
 }
