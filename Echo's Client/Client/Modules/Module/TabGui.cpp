@@ -17,7 +17,7 @@ void TabGui::onRender(class Renderer* renderer) {
 		cIndex++;
 	}
 
-	renderer->fillRectangle(Vec2(50, 100), Vec2(300, 300), _RGBA(57, 126, 216, 0.6f));
+	//renderer->fillRectangle(Vec2(50, 100), Vec2(300, 300), _RGBA(57, 126, 216, 0.6f));
 }
 
 void TabGui::onKey(uint64_t key, bool isDown, bool* cancelOrigin) {
