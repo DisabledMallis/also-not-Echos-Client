@@ -89,7 +89,8 @@ void TabGui::onKey(uint64_t key, bool isDown, bool* cancelOrigin) {
 		if (key == 0x26) { /* Up Arrow*/
 			*cancelOrigin = true;
 			if (sCat && !sMod) {
-				//
+				if (sCIndex == 0) sCIndex = client->categories.size();
+				sCIndex--;
 			}
 			else if (sMod) {
 				//
