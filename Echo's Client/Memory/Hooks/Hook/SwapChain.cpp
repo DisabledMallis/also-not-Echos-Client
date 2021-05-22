@@ -37,9 +37,15 @@ HRESULT __fastcall callback(IDXGISwapChain* pChain, UINT syncInterval, UINT flag
 
     renderer->init(pChain, pDevice, pContext);
 
-    renderer->drawString(L"Test", 20, Vec2(10, 10), _RGBA(50, 170, 200));
+    renderer->beginDraw();
 
-    renderer->d2dRenderTarget->Release();
+    for (auto C : rClient->categories) {
+        for (auto M : C->modules) M->onRender(renderer);
+    }
+
+    renderer->endDraw();
+
+    renderer->releaseTarget();
 
     return oPresent(pChain, syncInterval, flags);
 }

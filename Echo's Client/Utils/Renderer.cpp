@@ -25,16 +25,32 @@ void Renderer::init(IDXGISwapChain* pChain, ID3D11Device* pDevice, ID3D11DeviceC
     if(!once) once = true;
 }
 
+void Renderer::releaseTarget() {
+    if(this->d2dRenderTarget != nullptr) this->d2dRenderTarget->Release();
+}
+
+void Renderer::beginDraw() {
+    d2dRenderTarget->BeginDraw();
+}
+
+void Renderer::endDraw() {
+    d2dRenderTarget->EndDraw();
+}
+
 void Renderer::drawString(std::wstring t, float size, Vec2 pos, _RGBA rgb) {
    const wchar_t* text = t.c_str();
 
    writeFactory->CreateTextFormat(L"Arial", NULL, DWRITE_FONT_WEIGHT_NORMAL, DWRITE_FONT_STYLE_NORMAL, DWRITE_FONT_STRETCH_NORMAL, size, L"", &textFormat);
-   d2dRenderTarget->CreateSolidColorBrush(D2D1::ColorF(rgb.r, rgb.b, rgb.g, rgb.a), &brush);
-   
-   d2dRenderTarget->BeginDraw();
-
-   brush->SetColor(D2D1::ColorF(rgb.r, rgb.g, rgb.b, rgb.a));
+   d2dRenderTarget->CreateSolidColorBrush(D2D1::ColorF(rgb.r, rgb.g, rgb.b, rgb.a), &brush);
    d2dRenderTarget->DrawText(text, wcslen(text), textFormat, D2D1::RectF(pos.x, pos.y, pos.x + (pos.x * size), pos.y + (pos.y * size)), brush);
+}
 
-   d2dRenderTarget->EndDraw();
+void Renderer::drawRectangle(Vec2 start, Vec2 end, _RGBA rgb, float lineWidth) {
+    d2dRenderTarget->CreateSolidColorBrush(D2D1::ColorF(rgb.r, rgb.g, rgb.b, rgb.a), &brush);
+    d2dRenderTarget->DrawRectangle(D2D1::RectF(start.x, start.y, end.x, end.y), brush, lineWidth);
+}
+
+void Renderer::fillRectangle(Vec2 start, Vec2 end, _RGBA rgb) {
+    d2dRenderTarget->CreateSolidColorBrush(D2D1::ColorF(rgb.r, rgb.g, rgb.b, rgb.a), &brush);
+    d2dRenderTarget->FillRectangle(D2D1::RectF(start.x, start.y, end.x, end.y), brush);
 }

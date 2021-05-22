@@ -9,18 +9,21 @@ void TabGui::onRender(class Renderer* renderer) {
 
 	std::wstring logo = std::wstring(client->name.begin(), client->name.end());
 
-	//renderer->drawString(logo, textSize, Vec2(res.x - ((logo.length() + 1) * (textSize / 2)), res.y - (textSize * 2)), RGBA_FW1(74, 152, 255).toUint32());
+	renderer->drawString(logo, textSize, Vec2(res.x - ((logo.length() + 1) * (textSize / 2)), res.y - (textSize * 2)), _RGBA(57, 126, 216));
 
 	for (auto C : client->categories) {
 		Vec2 textPos = Vec2(15, (cIndex * (textSize + 5)) + 15);
-		//renderer->drawString(std::wstring(C->name.begin(), C->name.end()), textSize, (sCat ? sCIndex == cIndex ? Vec2(textPos.x + 10, textPos.y) : textPos : textPos), RGBA_FW1(74, 152, 255).toUint32());
+		renderer->drawString(std::wstring(C->name.begin(), C->name.end()), textSize, (sCat ? sCIndex == cIndex ? Vec2(textPos.x + 10, textPos.y) : textPos : textPos), _RGBA(57, 126, 216));
 		cIndex++;
 	}
+
+	renderer->fillRectangle(Vec2(50, 100), Vec2(300, 300), _RGBA(57, 126, 216, 0.6f));
 }
 
 void TabGui::onKey(uint64_t key, bool isDown, bool* cancelOrigin) {
 	if (isDown) {
 		if (key == 0x27) { /* Right Arrow */
+			*cancelOrigin = true;
 			if (!sCat) {
 				sCat = true;
 			}
@@ -38,12 +41,14 @@ void TabGui::onKey(uint64_t key, bool isDown, bool* cancelOrigin) {
 			}
 		}
 		if (key == 0x25) { /* Left Arrow */
+			*cancelOrigin = true;
 			if (sCat) {
 				sCat = false;
 				sCIndex = 0;
 			}
 		}
 		if (key == 0x26) { /* Up Arrow*/
+			*cancelOrigin = true;
 			if (sCat && !sMod) {
 				//
 			}
@@ -52,6 +57,7 @@ void TabGui::onKey(uint64_t key, bool isDown, bool* cancelOrigin) {
 			}
 		}
 		if (key == 0x28) { /* Down Arrow */
+			*cancelOrigin = true;
 			if (sCat && !sMod) {
 				sCIndex++;
 				if (sCIndex == client->categories.size()) {

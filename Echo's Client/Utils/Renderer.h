@@ -11,7 +11,7 @@
 #pragma comment(lib, "dwrite.lib")
 
 class Renderer {
-public:
+private:
 	ID3D11DeviceContext* pContext = nullptr;
 
 	ID2D1RenderTarget* d2dRenderTarget;
@@ -22,7 +22,12 @@ public:
 
 	IDWriteTextFormat* textFormat;
 	ID2D1SolidColorBrush* brush;
-
+public:
 	void init(IDXGISwapChain*, ID3D11Device*, ID3D11DeviceContext*);
-	void drawString(std::wstring, float, Vec2, _RGBA);
+	void releaseTarget();
+	void beginDraw();
+	void endDraw();
+	void drawString(std::wstring text, float size, Vec2 pos, _RGBA rgb);
+	void drawRectangle(Vec2 start, Vec2 end, _RGBA rgb, float lineWidth = 1.0f);
+	void fillRectangle(Vec2 start, Vec2 end, _RGBA rgb);
 };
