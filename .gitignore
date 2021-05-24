@@ -27,3 +27,6 @@ build/
 *.vcxproj.filters
 *.vcxproj.user
 packages/
+*.cmake
+CMakeFiles/
+CMakeCache.txt
