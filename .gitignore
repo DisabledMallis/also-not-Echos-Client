@@ -20,5 +20,10 @@ cmake-build-minsizerel/
 *.p7s
 *.targets
 *.nupkg
-
-packages/minhook.1.3.3/lib/native/include/MinHook.h
+*.sln
+build/
+*.config
+*.vcxproj
+*.vcxproj.filters
+*.vcxproj.user
+packages/
