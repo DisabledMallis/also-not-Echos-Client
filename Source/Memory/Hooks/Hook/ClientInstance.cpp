@@ -22,8 +22,8 @@ void CInstance_Hook::init() {
 	Utils::DebugLogF("Preparing to hook onto the Client Instance");
 	uintptr_t sigAddr = Utils::FindSig("48 8B 89 ? ? ? ? 48 85 C9 ? ? 33 C0 48 8B 5C ? ?");
 	if (!sigAddr) return;
-	if (MH_CreateHook((void*)sigAddr, &CInstance_Callback, reinterpret_cast<LPVOID*>(&_CInstance)) == MH_OK) {
-		MH_EnableHook((void*)sigAddr);
+	PLH::x64Detour* detour = new PLH::x64Detour(sigAddr, (const uintptr_t)&CInstance_Callback, &_CInstance, cClientI->getDis());
+	if (detour->hook()) {
 		Utils::DebugLogF("Successfully completed Client Instance Hook!");
 	}
 	else {

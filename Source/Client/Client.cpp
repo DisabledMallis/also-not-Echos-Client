@@ -30,7 +30,7 @@ void Client::init() {
 
 	Utils::DebugLogF("Initializing Client...");
 
-	Hook::initMH(this); /* Initialize MinHook */
+	Hook::initHook(this); /* Initialize MinHook HAHAHA jk PolyHook gang */
 
 	/* Initialize Client Instance Hook */
 	CInstance_Hook* cI_Hook = new CInstance_Hook();
@@ -66,4 +66,8 @@ void Client::init() {
 	TabGui* TabGuiMod = new TabGui(this, other, "TabGui");
 
 	TestMod* testMod = new TestMod(this, other, "Test Module");
+}
+
+auto getDis() -> PLH::CapstoneDisassembler* {
+	return Client::dis;
 }

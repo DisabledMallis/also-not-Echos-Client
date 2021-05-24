@@ -4,11 +4,14 @@
 #include <string>
 #include <map>
 
+#include <polyhook2/CapstoneDisassembler.hpp>
+
 #include "Categories/Category.h"
 #include "Modules/Module.h"
 
 class Client {
 public:
+	static inline PLH::CapstoneDisassembler* dis = nullptr;
 	HMODULE hModule;
 	bool isRunning = false;
 
@@ -22,4 +25,5 @@ public:
 	std::map<uint64_t, bool> keyMap;
 
 	void init();
+	PLH::CapstoneDisassembler* getDis();
 };
