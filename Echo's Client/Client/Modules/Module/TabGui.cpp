@@ -32,8 +32,11 @@ void TabGui::onRender(class Renderer* renderer) {
 	int i = 0;
 	float tSize = instance->guiData()->GuiScale() * 10;
 
+	Vec2 start = Vec2(10, 10);
+	Vec2 end = Vec2((start.x + 100) * tSize, (client->categories.size() * 10));
+
 	for (auto C : client->categories) {
-		Vec2 tPos = Vec2(10, (i * (tSize + 5)) + 10);
+		Vec2 tPos = Vec2(start.x, ((i * tSize) + start.y));
 
 		static bool reg = false;
 		if (!reg) {
