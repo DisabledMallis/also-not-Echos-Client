@@ -3,8 +3,7 @@
 
 Client* clientI;
 
-typedef void(__thiscall* GM_Tick)(GameMode* GM);
-GM_Tick _GM_Tick;
+uint64_t _GM_Tick;
 
 void GMTick_Callback(GameMode* GM) {
 	for (auto C : clientI->categories) {
@@ -13,7 +12,7 @@ void GMTick_Callback(GameMode* GM) {
 			M->onGmTick(GM);
 		}
 	}
-	_GM_Tick(GM);
+	PLH:FnCast(_GM_Tick, &GMTick_Callback)(GM);
 }
 
 void GameMode_Hook::init() {
@@ -25,9 +24,10 @@ void GameMode_Hook::init() {
 	if (!sigAddr) return;
 	int offset = *reinterpret_cast<int*>(sigAddr + 3);
 	uintptr_t** VTable = reinterpret_cast<uintptr_t**>(sigAddr + offset + 7);
-
-	if (MH_CreateHook((void*)VTable[10], &GMTick_Callback, reinterpret_cast<LPVOID*>(&_GM_Tick)) == MH_OK) {
-		MH_EnableHook((void*)VTable[10]);
+	//Must heap allocate the hook so the stack doesn't pop it.
+	//Polyhook unhooks when a hook is deleted from memory
+	PLH::x64Detour* detour = new PLH::x64Detour((uintptr_t)VTable[10], (uintptr_t)&GMTick_Callback, &_GM_Tick, *clientI->getDis());
+	if (detour->hook()) {
 		Utils::DebugLogF("Successfully completed GameMode Hook!");
 	}
 	else {

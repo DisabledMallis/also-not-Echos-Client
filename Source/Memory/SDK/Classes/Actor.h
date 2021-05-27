@@ -41,7 +41,7 @@ public:
 	virtual float getInterpolatedWalkAnimSpeed(float);
 	virtual Vec3 getWorldPosition(void);
 	virtual void checkBlockCollisions(void);
-	virtual void checkBlockCollisions(struct AABB const&, void*/*std::function<void(BlockSource&, Block const&, BlockPos const&, Actor&)>*/);
+	virtual void checkBlockCollisions(struct AABB const&, void* /*std::function<void(BlockSource&, Block const&, BlockPos const&, Actor&)>*/);
 	virtual bool isFireImmune(void);
 private:
 	virtual void Function33();

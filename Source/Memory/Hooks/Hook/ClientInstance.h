@@ -4,5 +4,5 @@
 
 class CInstance_Hook : public Hook {
 public:
-	void init();
+	void init() override;
 };
