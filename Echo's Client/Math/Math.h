@@ -40,6 +40,13 @@ struct Vec3 {
 
 	bool operator == (Vec3 v) { return v.x == x && v.y == y && v.z == z; };
 	bool operator != (Vec3 v) { return v.x != x || v.y != y || v.z != z; };
+
+	double distance(Vec3 v) {
+		float dX = x - v.x;
+		float dY = y - v.y;
+		float dZ = z - v.z;
+		return sqrt(dX * dX + dY * dY + dZ * dZ);
+	}
 };
 
 struct Vec3i {
