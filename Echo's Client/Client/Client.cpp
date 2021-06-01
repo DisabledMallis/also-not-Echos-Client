@@ -23,6 +23,7 @@ Client::Client(std::string name) {
 
 /* Combat */
 /* Movement */
+#include "Modules/Module/AutoSprint.h"
 /* Player */
 /* Visuals */
 #include "Modules/Module/TabGui.h"
@@ -73,6 +74,7 @@ void Client::init() {
 
 	/* Combat */
 	/* Movement */
+	AutoSprint* sprintMod = new AutoSprint(this, movement, "AutoSprint");
 	/* Player */
 	/* Visuals */
 	TabGui* TabGuiMod = new TabGui(this, visuals, "TabGui");

@@ -66,6 +66,9 @@
     <ClCompile Include="Client\Modules\Module\Uninject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Client\Modules\Module\AutoSprint.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Utils\Utils.h">
@@ -150,6 +153,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Client\Modules\Module\Uninject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Client\Modules\Module\AutoSprint.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
