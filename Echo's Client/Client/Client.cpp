@@ -23,6 +23,7 @@ Client::Client(std::string name) {
 
 /* Combat */
 #include "Modules/Module/Killaura.h"
+#include "Modules/Module/Hitbox.h"
 /* Movement */
 #include "Modules/Module/AutoSprint.h"
 #include "Modules/Module/AirJump.h"
@@ -76,6 +77,7 @@ void Client::init() {
 
 	/* Combat */
 	Killaura* killauraMod = new Killaura(this, combat, "Killaura");
+	Hitbox* hitboxMod = new Hitbox(this, combat, "Hitbox");
 	/* Movement */
 	AutoSprint* sprintMod = new AutoSprint(this, movement, "AutoSprint");
 	AirJump* airJumpMod = new AirJump(this, movement, "AirJump");
