@@ -42,7 +42,7 @@ void Renderer::drawString(std::wstring t, float size, Vec2 pos, _RGBA rgb) {
 
    writeFactory->CreateTextFormat(L"Arial", NULL, DWRITE_FONT_WEIGHT_NORMAL, DWRITE_FONT_STYLE_NORMAL, DWRITE_FONT_STRETCH_NORMAL, size, L"", &textFormat);
    d2dRenderTarget->CreateSolidColorBrush(D2D1::ColorF(rgb.r, rgb.g, rgb.b, rgb.a), &brush);
-   d2dRenderTarget->DrawText(text, wcslen(text), textFormat, D2D1::RectF(pos.x, pos.y, pos.x + (pos.x * size), pos.y + (pos.y * size)), brush);
+   d2dRenderTarget->DrawText(text, wcslen(text), textFormat, D2D1::RectF(pos.x, pos.y, pos.x + (pos.x + (wcslen(text) * size)), pos.y + (pos.y + 100)), brush);
 }
 
 void Renderer::drawRectangle(Vec2 start, Vec2 end, _RGBA rgb, float lineWidth) {
@@ -53,4 +53,26 @@ void Renderer::drawRectangle(Vec2 start, Vec2 end, _RGBA rgb, float lineWidth) {
 void Renderer::fillRectangle(Vec2 start, Vec2 end, _RGBA rgb) {
     d2dRenderTarget->CreateSolidColorBrush(D2D1::ColorF(rgb.r, rgb.g, rgb.b, rgb.a), &brush);
     d2dRenderTarget->FillRectangle(D2D1::RectF(start.x, start.y, end.x, end.y), brush);
+}
+
+float Renderer::textWidth(std::wstring t, float size) {
+    auto metrics = getTextMetrics(t, size);
+    return metrics.height / 2;
+}
+
+float Renderer::textHeight(std::wstring text, float size) {
+    auto metrics = getTextMetrics(text, size);
+    return metrics.width;
+}
+
+DWRITE_TEXT_METRICS Renderer::getTextMetrics(std::wstring t, float size) {
+    const wchar_t* text = t.c_str();
+    IDWriteTextLayout* layout = nullptr;
+    writeFactory->CreateTextFormat(L"Arial", NULL, DWRITE_FONT_WEIGHT_NORMAL, DWRITE_FONT_STYLE_NORMAL, DWRITE_FONT_STRETCH_NORMAL, size, L"", &textFormat);
+    writeFactory->CreateTextLayout(text, wcslen(text), textFormat, 0.0f, 0.0f, &layout);
+    if (layout != nullptr) {
+        DWRITE_TEXT_METRICS textMetrics;
+        layout->GetMetrics(&textMetrics);
+        return textMetrics;
+    }
 }
