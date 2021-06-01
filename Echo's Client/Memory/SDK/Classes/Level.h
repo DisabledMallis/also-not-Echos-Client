@@ -257,8 +257,8 @@ public:
 	/* Lots more but fuck this shit = Jesus Fucking Christ */
 public:
 	char pad_0x0008[0x50]; //0x0008
-	uintptr_t* entListStart; //0x0058
-	uintptr_t* entListEnd; //0x0060
+	uintptr_t entListStart; //0x0058
+	uintptr_t entListEnd; //0x0060
 
 	std::vector<class Actor*> getEntities() {
 		size_t size = (entListEnd - entListStart) / sizeof(uintptr_t);
