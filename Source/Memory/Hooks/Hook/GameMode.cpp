@@ -12,7 +12,7 @@ void GMTick_Callback(GameMode* GM) {
 			M->onGmTick(GM);
 		}
 	}
-	PLH:FnCast(_GM_Tick, &GMTick_Callback)(GM);
+	PLH::FnCast(_GM_Tick, &GMTick_Callback)(GM);
 }
 
 void GameMode_Hook::init() {

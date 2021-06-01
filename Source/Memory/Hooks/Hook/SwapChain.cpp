@@ -2,8 +2,7 @@
 #include "../../../Client/Client.h"
 #include "../../../Utils/Renderer.h"
 
-typedef HRESULT(__fastcall* D3D11PresentHook) (IDXGISwapChain* pChain, UINT syncInterval, UINT flags);
-D3D11PresentHook oPresent = nullptr;
+uintptr_t oPresent;
 
 IDXGISwapChain* pSwapChain = nullptr;
 ID3D11Device* pDevice = nullptr;
@@ -47,7 +46,7 @@ HRESULT __fastcall callback(IDXGISwapChain* pChain, UINT syncInterval, UINT flag
 
     renderer->releaseTarget(); /* Release Target Texture */
 
-    return oPresent(pChain, syncInterval, flags);
+    return PLH::FnCast(oPresent, &callback)(pChain, syncInterval, flags);
 }
 
 void SwapChain_Hook::init() {
@@ -89,8 +88,8 @@ void SwapChain_Hook::init() {
 
     Utils::DebugLogF("Preparing to hook SwapChain Present");
 
-    if (MH_CreateHook((void*)pSwapChainVTable[8], &callback, reinterpret_cast<LPVOID*>(&oPresent)) == MH_OK) {
-        MH_EnableHook((void*)pSwapChainVTable[8]);
+	PLH::x64Detour* detour = new PLH::x64Detour((uintptr_t)pSwapChainVTable[8], (uintptr_t)&callback, &oPresent, *rClient->getDis());
+    if (detour->hook()) {
         Utils::DebugLogF("Successfully completed SwapChain Present Hook!");
     }
     else {
