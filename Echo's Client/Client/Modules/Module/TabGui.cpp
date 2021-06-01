@@ -41,6 +41,8 @@ void TabGui::updateAlpha() {
 	}
 }
 
+float lastScale = 0;
+
 void TabGui::onRender(class Renderer* renderer) {
 	if (instance != nullptr && instance->guiData() != nullptr) {
 		int ID = 0;
@@ -92,6 +94,14 @@ void TabGui::onRender(class Renderer* renderer) {
 			float rectLen = 0.f;
 			auto modules = client->categories.at(sCIndex)->modules;
 
+			{
+				auto currScale = instance->guiData()->GuiScale();
+				if (lastScale != currScale) {
+					lastScale = currScale;
+					modComponents.clear();
+				}
+			}
+
 			for (auto M : modules) {
 				auto currLen = renderer->textWidth(std::wstring(M->name.begin(), M->name.end()), tSize);
 				if (currLen > rectLen) rectLen = currLen;
@@ -102,15 +112,16 @@ void TabGui::onRender(class Renderer* renderer) {
 			Vec2 startM = Vec2(start.x + catLen, start.y + (sCIndex * (tSize + yStretch)));
 			renderer->fillRectangle(startM, Vec2(startM.x + rectLen, startM.y + (modules.size() * (tSize + yStretch))), backgroundColour);
 
-			if (modComponents.size() <= 0) {
-				int cID = 0;
-				for (auto M : modules) {
-					modComponents.push_back(new _OffXC(cID, startM.x));
-					cID++;
-				}
-			}
-
 			for (auto M : modules) {
+				
+				if (modComponents.size() <= 0) {
+					int cID = 0;
+					for (auto M : modules) {
+						modComponents.push_back(new _OffXC(cID, startM.x));
+						cID++;
+					}
+				}
+
 				auto tComponent = ((modComponents.size() > ID) ? modComponents.at(ID) : nullptr);
 				if (tComponent == nullptr) break;
 
