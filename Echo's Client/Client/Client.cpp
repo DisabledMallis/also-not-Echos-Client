@@ -32,6 +32,11 @@ void Client::init() {
 
 	Hook::initMH(this); /* Initialize MinHook */
 
+	/* Initialize SwapChain (Dx11) Hook */
+
+	SwapChain_Hook* swapChain_Hook = new SwapChain_Hook();
+	swapChain_Hook->init();
+
 	/* Initialize Client Instance Hook */
 	CInstance_Hook* cI_Hook = new CInstance_Hook();
 	cI_Hook->init();
@@ -47,11 +52,6 @@ void Client::init() {
 	/* Initialize AVKeyItem Hook */
 	KeyItem_Hook* key_Hook = new KeyItem_Hook();
 	key_Hook->init();
-
-	/* Initialize SwapChain (Dx11) Hook */
-
-	SwapChain_Hook* swapChain_Hook = new SwapChain_Hook();
-	swapChain_Hook->init();
 
 	/* Initialize Categories */
 

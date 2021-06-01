@@ -1,5 +1,6 @@
 #pragma once
 #include "../Minecraft.h"
+#include "MinecraftGame.h"
 #include "GuiData.h"
 #include "ItemStack.h"
 #include "Player.h"

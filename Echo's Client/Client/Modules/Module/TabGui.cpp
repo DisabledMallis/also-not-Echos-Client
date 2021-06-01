@@ -26,7 +26,18 @@ std::vector<class _OffXC*> Components;
 Vec2 start = Vec2(10, 10);
 
 void TabGui::renderLogo(class Renderer* renderer) {
-	//
+	//Do this later
+}
+
+void TabGui::updateAlpha() {
+	float modifier = 0.03f;
+	MinecraftGame* game = instance->minecraftGame();
+	if (game->canUseKeys) {
+		if (alpha < 1.0f) alpha += modifier;
+	}
+	else {
+		if (alpha > 0) alpha -= modifier;
+	}
 }
 
 void TabGui::onRender(class Renderer* renderer) {
@@ -40,10 +51,12 @@ void TabGui::onRender(class Renderer* renderer) {
 			once = true;
 		}
 		ID = 0;
+
 		renderLogo(renderer);
+		updateAlpha();
 		
-		_RGBA textColour = _RGBA(200, 200, 200);
-		_RGBA backgroundColour = _RGBA(30, 70, 115);
+		_RGBA textColour = _RGBA(200, 200, 200, alpha);
+		_RGBA backgroundColour = _RGBA(30, 70, 115, alpha);
 
 		float tSize = instance->guiData()->GuiScale() * 10;
 		float catLen = 0.f;

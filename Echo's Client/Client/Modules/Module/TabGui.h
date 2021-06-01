@@ -8,6 +8,7 @@ public:
 
 	void onRender(class Renderer*);
 	void renderLogo(class Renderer*);
+	void updateAlpha();
 	void onKey(uint64_t, bool, bool*);
 
 	int sCIndex; /* Selected Category Index */
@@ -15,4 +16,6 @@ public:
 
 	bool sCat = false;
 	bool sMod = false;
+
+	float alpha = 0.f;
 };
