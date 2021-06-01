@@ -41,7 +41,7 @@ void TabGui::updateAlpha() {
 	}
 }
 
-float lastScale = 0;
+float lastScale = -1;
 
 void TabGui::onRender(class Renderer* renderer) {
 	if (instance != nullptr && instance->guiData() != nullptr) {
@@ -88,44 +88,39 @@ void TabGui::onRender(class Renderer* renderer) {
 
 			ID++;
 		}
-
 		if (sMod) {
 			ID = 0;
 			float rectLen = 0.f;
 			auto modules = client->categories.at(sCIndex)->modules;
-
-			{
-				auto currScale = instance->guiData()->GuiScale();
-				if (lastScale != currScale) {
-					lastScale = currScale;
-					modComponents.clear();
-				}
-			}
 
 			for (auto M : modules) {
 				auto currLen = renderer->textWidth(std::wstring(M->name.begin(), M->name.end()), tSize);
 				if (currLen > rectLen) rectLen = currLen;
 			}
 
-			rectLen += 10.0f; /* Stretch Rect */
+			Vec2 startRect = Vec2(start.x + catLen, start.y + (sCIndex * (tSize + yStretch)));
+			Vec2 endRect = Vec2(startRect.x + rectLen, startRect.y + (modules.size() * (tSize + yStretch)));
 
-			Vec2 startM = Vec2(start.x + catLen, start.y + (sCIndex * (tSize + yStretch)));
-			renderer->fillRectangle(startM, Vec2(startM.x + rectLen, startM.y + (modules.size() * (tSize + yStretch))), backgroundColour);
+			renderer->fillRectangle(startRect, endRect, backgroundColour);
+
+			auto currScale = instance->guiData()->GuiScale();
+			if (lastScale != currScale) {
+				lastScale = currScale;
+				modComponents.clear();
+				int cID = 0;
+				for (auto M : modules) {
+					auto _this = new _OffXC(cID, startRect.x);
+					_this->offX = (_this->offX + (this->sMod && sMIndex == cID ? yStretch : 0));
+					modComponents.push_back(_this);
+					cID++;
+				}
+			}
 
 			for (auto M : modules) {
-				
-				if (modComponents.size() <= 0) {
-					int cID = 0;
-					for (auto M : modules) {
-						modComponents.push_back(new _OffXC(cID, startM.x));
-						cID++;
-					}
-				}
-
 				auto tComponent = ((modComponents.size() > ID) ? modComponents.at(ID) : nullptr);
 				if (tComponent == nullptr) break;
 
-				Vec2 tPos = Vec2(startM.x, startM.y + (ID * (tSize + yStretch)));
+				Vec2 tPos = Vec2(startRect.x, startRect.y + (ID * (tSize + yStretch)));
 				tPos.x = (tPos.x + (this->sMod && sMIndex == ID ? yStretch : 0));
 
 				tComponent->shiftX(tPos.x);
@@ -133,9 +128,6 @@ void TabGui::onRender(class Renderer* renderer) {
 				renderer->drawString(std::wstring(M->name.begin(), M->name.end()), tSize, Vec2(tComponent->offX, tPos.y), M->isEnabled ? greenColour : textColour);
 				ID++;
 			}
-		}
-		else {
-			if (modComponents.size() > 0) modComponents.clear();
 		}
 	}
 }
