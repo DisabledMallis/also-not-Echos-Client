@@ -6,6 +6,15 @@ public:
 	//
 };
 
+struct _Vec2P {
+	float* x;
+	float* y;
+
+	_Vec2P(float* x, float* y) {
+		this->x = x; this->y = y;
+	}
+};
+
 struct Vec2 {
 	union {
 		struct {
@@ -19,6 +28,10 @@ struct Vec2 {
 	Vec2(float x = 0, float y = 0) {
 		this->x = x; this->y = y;
 	};
+
+	Vec2(_Vec2P v) {
+		this->x = *v.x; this->y = *v.y;
+	}
 
 	bool operator == (Vec2 v) { return v.x == x && v.y == y; };
 	bool operator != (Vec2 v) { return v.x != x || v.y != y; };

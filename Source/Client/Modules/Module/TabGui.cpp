@@ -1,60 +1,92 @@
 #include "TabGui.h"
 
-class TC { /* Text Component */
+class _OffXC {
 public:
 	int ID = 0;
-	float cOffX = 0;
-	float cOffY = 0;
+	float offX;
 
-	TC(int ID, Vec2 offPos) {
+	_OffXC(int ID, float offX) {
 		this->ID = ID;
-		this->cOffX = offPos.x;
-		this->cOffY = offPos.y;
+		this->offX = offX;
 	}
 
-	void shiftX(float newX, float multiplyr = 0.5f) {
-		if (this->cOffX != newX) {
-			if (this->cOffX < newX) {
-				this->cOffX += multiplyr;
-			}
-			else if (this->cOffX > newX) {
-				this->cOffX -= multiplyr;
-			}
+	void shiftX(float newX, float mplyr = 0.5f) {
+		if (offX < newX) {
+			offX += mplyr;
+		}
+		else if (offX > newX) {
+			offX -= mplyr;
 		}
 	}
 };
 
-std::vector<TC*> textComponents = std::vector<TC*>();
+bool once = false;
+std::vector<class _OffXC*> Components;
+
+Vec2 start = Vec2(10, 10);
+
+void TabGui::renderLogo(class Renderer* renderer) {
+	//Do this later
+}
+
+void TabGui::updateAlpha() {
+	float modifier = 0.03f;
+	MinecraftGame* game = instance->minecraftGame();
+	if (game->canUseKeys) {
+		if (alpha < 1.0f) alpha += modifier;
+	}
+	else {
+		if (alpha > 0) alpha -= modifier;
+	}
+}
 
 void TabGui::onRender(class Renderer* renderer) {
-	if (instance == nullptr || instance->guiData() == nullptr) return;
+	if (instance != nullptr && instance->guiData() != nullptr) {
+		int ID = 0;
+		if (!once) {
+			for (auto C : client->categories) {
+				Components.push_back(new _OffXC(ID, start.x));
+				ID++;
+			}
+			once = true;
+		}
+		ID = 0;
 
-	int i = 0;
-	float tSize = instance->guiData()->GuiScale() * 10;
+		renderLogo(renderer);
+		updateAlpha();
+		
+		_RGBA textColour = _RGBA(200, 200, 200, alpha);
+		_RGBA backgroundColour = _RGBA(30, 70, 115, alpha);
 
-	Vec2 start = Vec2(10, 10);
-	Vec2 end = Vec2((start.x + 100) * tSize, (client->categories.size() * 10));
+		float tSize = instance->guiData()->GuiScale() * 10;
+		float catLen = 0.f;
 
-	for (auto C : client->categories) {
-		Vec2 tPos = Vec2(start.x, ((i * tSize) + start.y));
-
-		static bool reg = false;
-		if (!reg) {
-			textComponents.push_back(new TC(i, tPos));
-			if(i == (client->categories.size() - 1)) reg = true;
+		for (auto C : client->categories) {
+			auto currLen = renderer->textWidth(std::wstring(C->name.begin(), C->name.end()), tSize);
+			if (currLen > catLen) catLen = currLen;
 		}
 
-		auto cTC = textComponents.at(i);
+		catLen += 10.0f; /* Stretch Width */
+		float yStretch = 5.0f; /* Stretch Y */
 
-		if (sCat && sCIndex == i) {
-			cTC->shiftX(tPos.x + 10);
-		}
-		else {
-			cTC->shiftX(tPos.x);
-		}
+		renderer->fillRectangle(Vec2(start.x - (start.x / 2), start.y), Vec2(start.x + catLen, start.y + (client->categories.size() * (tSize + yStretch))), backgroundColour);
+		
+		for (auto C : client->categories) {
+			auto tComponent = ((Components.size() > ID) ? Components.at(ID) : nullptr);
+			if (tComponent == nullptr) {
+				Utils::DebugLogF(std::to_string(ID).c_str());
+				break;
+			}
 
-		renderer->drawString(std::wstring(C->name.begin(), C->name.end()), tSize, Vec2(tPos.x + cTC->cOffX, tPos.y), _RGBA(52, 152, 219, 1));
-		i++;
+			Vec2 tPos = Vec2(start.x, start.y + (ID * (tSize + yStretch)));
+			tPos.x = (tPos.x + (this->sCat && sCIndex == ID ? 5 : 0));
+
+			tComponent->shiftX(tPos.x);
+
+			renderer->drawString(std::wstring(C->name.begin(), C->name.end()), tSize, Vec2(tComponent->offX, tPos.y), textColour);
+
+			ID++;
+		}
 	}
 }
 

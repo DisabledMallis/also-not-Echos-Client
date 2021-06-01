@@ -32,6 +32,11 @@ void Client::init() {
 
 	Hook::initHook(this); /* Initialize MinHook HAHAHA jk PolyHook gang */
 
+	/* Initialize SwapChain (Dx11) Hook */
+
+	SwapChain_Hook* swapChain_Hook = new SwapChain_Hook();
+	swapChain_Hook->init();
+
 	/* Initialize Client Instance Hook */
 	CInstance_Hook* cI_Hook = new CInstance_Hook();
 	cI_Hook->init();
@@ -48,17 +53,13 @@ void Client::init() {
 	KeyItem_Hook* key_Hook = new KeyItem_Hook();
 	key_Hook->init();
 
-	/* Initialize SwapChain (Dx11) Hook */
-
-	SwapChain_Hook* swapChain_Hook = new SwapChain_Hook();
-	swapChain_Hook->init();
-
 	/* Initialize Categories */
 
 	Category* combat = new Category(this, "Combat");
 	Category* movement = new Category(this, "Movement");
 	Category* player = new Category(this, "Player");
 	Category* visuals = new Category(this, "Visuals");
+	Category* world = new Category(this, "World");
 	Category* other = new Category(this, "Other");
 
 	/* Initialize Modules */

@@ -30,4 +30,7 @@ public:
 	void drawString(std::wstring text, float size, Vec2 pos, _RGBA rgb);
 	void drawRectangle(Vec2 start, Vec2 end, _RGBA rgb, float lineWidth = 1.0f);
 	void fillRectangle(Vec2 start, Vec2 end, _RGBA rgb);
+	float textWidth(std::wstring text, float size);
+	float textHeight(std::wstring text, float size);
+	DWRITE_TEXT_METRICS getTextMetrics(std::wstring text, float size);
 };
