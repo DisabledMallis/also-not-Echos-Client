@@ -6,6 +6,7 @@
 Module::Module(class Client* client, class Category* category, std::string name) {
 	this->client = client;
 	this->category = category;
+	this->name = name;
 
 	this->category->modules.push_back(this);
 
