@@ -4,7 +4,7 @@
 
 class TabGui : public Module {
 public:
-	TabGui(class Client* i, class Category* c, std::string n) : Module(i, c, n) {
+	TabGui(class Client* i, class Category* c, std::string n) : Module(i, c, n, VK_TAB) {
 		this->isEnabled = true;
 	};
 

@@ -20,6 +20,8 @@ public:
 	bool isEnabled = false;
 	bool wasEnabled = false;
 
+	uint64_t key;
+
 	void baseTick();
 
 	virtual void onEnable() {};
@@ -32,7 +34,7 @@ public:
 
 	virtual void onRender(class Renderer*) {};
 
-	Module(class Client*, class Category*, std::string);
+	Module(class Client* client, class Category* category, std::string name, uint64_t key = 0);
 
 	ClientInstance* instance;
 	Player* player;

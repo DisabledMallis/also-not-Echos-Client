@@ -3,10 +3,11 @@
 #include "../Client.h"
 #include "../Categories/Category.h"
 
-Module::Module(class Client* client, class Category* category, std::string name) {
+Module::Module(class Client* client, class Category* category, std::string name, uint64_t key) {
 	this->client = client;
 	this->category = category;
 	this->name = name;
+	this->key = key;
 
 	this->category->modules.push_back(this);
 

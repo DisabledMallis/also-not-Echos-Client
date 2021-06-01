@@ -12,6 +12,11 @@ void callback(uint64_t key, bool isDown) {
 
 	for (auto C : kClient->categories) {
 		for (auto M : C->modules) {
+			if (isDown && key == M->key) {
+				auto instance = M->instance;
+				if(instance != nullptr && instance->minecraftGame() != nullptr && instance->minecraftGame()->canUseKeys)
+					M->isEnabled = !M->isEnabled;
+			}
 			M->onKey(key, isDown, &cancel);
 		}
 	}
