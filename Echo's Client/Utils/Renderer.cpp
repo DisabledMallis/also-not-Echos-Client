@@ -43,6 +43,7 @@ void Renderer::drawString(std::wstring t, float size, Vec2 pos, _RGBA rgb) {
    d2dRenderTarget->CreateSolidColorBrush(D2D1::ColorF(rgb.r, rgb.g, rgb.b, rgb.a), &brush);
    d2dRenderTarget->DrawText(text, wcslen(text), textFormat, D2D1::RectF(pos.x, pos.y, pos.x + (pos.x + (wcslen(text) * size)), pos.y + (pos.y + 100)), brush);
    this->textFormat->Release();
+   this->brush->Release();
 }
 
 void Renderer::drawRectangle(Vec2 start, Vec2 end, _RGBA rgb, float lineWidth) {
