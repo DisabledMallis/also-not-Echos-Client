@@ -159,6 +159,7 @@
     <ClCompile Include="Client\Client.cpp" />
     <ClCompile Include="Client\Modules\Module.cpp" />
     <ClCompile Include="Client\Modules\Module\AutoSprint.cpp" />
+    <ClCompile Include="Client\Modules\Module\Killaura.cpp" />
     <ClCompile Include="Client\Modules\Module\TabGui.cpp" />
     <ClCompile Include="Client\Modules\Module\TestMod.cpp" />
     <ClCompile Include="Client\Modules\Module\Uninject.cpp" />
@@ -179,6 +180,7 @@
     <ClInclude Include="Client\Client.h" />
     <ClInclude Include="Client\Modules\Module.h" />
     <ClInclude Include="Client\Modules\Module\AutoSprint.h" />
+    <ClInclude Include="Client\Modules\Module\Killaura.h" />
     <ClInclude Include="Client\Modules\Module\TabGui.h" />
     <ClInclude Include="Client\Modules\Module\TestMod.h" />
     <ClInclude Include="Client\Modules\Module\Uninject.h" />
