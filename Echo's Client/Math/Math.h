@@ -39,14 +39,66 @@ struct Vec3 {
 		this->x = x; this->y = y; this->z = z;
 	};
 
+	Vec3(float f) {
+		this->x = x; this->y = f; this->z = f;
+	}
+
 	bool operator == (Vec3 v) { return v.x == x && v.y == y && v.z == z; };
 	bool operator != (Vec3 v) { return v.x != x || v.y != y || v.z != z; };
+
+	Vec3 add(Vec3 v) {
+		return Vec3(x + v.x, y + v.y, z + v.z);
+	}
+
+	Vec3 add(float f) {
+		return Vec3(x + f, y + f, z + f);
+	}
+
+	Vec3 sub(Vec3 v) {
+		return Vec3(x - v.x, y - v.y, z - v.z);
+	}
+
+	Vec3 sub(float f) {
+		return Vec3(x - f, y - f, z - f);
+	}
+
+	Vec3 mult(Vec3 v) {
+		return Vec3(x * v.x, y * v.y, z * v.z);
+	}
+
+	Vec3 mult(float f) {
+		return Vec3(x * f, y * f, z * f);
+	}
+
+	Vec3 div(Vec3 v) {
+		return Vec3(x / v.x, y / v.y, z / v.z);
+	}
+
+	Vec3 div(float f) {
+		return Vec3(x / f, y / f, z / f);
+	}
 
 	float distance(Vec3 v) {
 		float dX = x - v.x;
 		float dY = y - v.y;
 		float dZ = z - v.z;
 		return std::sqrt(dX * dX + dY * dY + dZ * dZ);
+	}
+
+	float magnitude() {
+		return sqrtf(x * x + y * y + z * z);
+	}
+
+	float magnitudexy() {
+		return sqrtf(x * x + y * y);
+	}
+
+	float magnitudexz() {
+		return sqrtf(x * x + z * z);
+	}
+
+	Vec3 normalize() {
+		return div(magnitude());
 	}
 };
 
