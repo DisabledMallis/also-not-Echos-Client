@@ -17,7 +17,7 @@ public:
 	virtual void useItem(class ItemStack&);
 	virtual void useItemOn(class ItemStack&, Vec3i const&, UCHAR, Vec3 const&, class Block const*);
 	virtual void interact(Actor&, Vec3 const&);
-	virtual void attack(Actor&);
+	virtual void attack(Actor*);
 	virtual void releaseUsingItem(void);
 	virtual void setTrialMode(bool);
 	virtual bool isInTrialMode(void);
