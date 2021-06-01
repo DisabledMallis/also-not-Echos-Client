@@ -4,7 +4,9 @@
 
 class TabGui : public Module {
 public:
-	TabGui(class Client* i, class Category* c, std::string n) : Module(i, c, n) {};
+	TabGui(class Client* i, class Category* c, std::string n) : Module(i, c, n) {
+		this->isEnabled = true;
+	};
 
 	void onRender(class Renderer*);
 	void renderLogo(class Renderer*);

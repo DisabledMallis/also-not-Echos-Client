@@ -10,7 +10,7 @@ void GMTick_Callback(GameMode* GM) {
 	for (auto C : clientI->categories) {
 		for (auto M : C->modules) {
 			M->player = GM->player;
-			M->onGmTick(GM);
+			if(M->isEnabled) M->onGmTick(GM);
 		}
 	}
 	_GM_Tick(GM);

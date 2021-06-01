@@ -40,7 +40,8 @@ HRESULT __fastcall callback(IDXGISwapChain* pChain, UINT syncInterval, UINT flag
     renderer->beginDraw(); /* Begin Frame */
 
     for (auto C : rClient->categories) {
-        for (auto M : C->modules) M->onRender(renderer); /* Let onRender handle renderer method calls*/
+        for (auto M : C->modules)
+            if(M->isEnabled) M->onRender(renderer); /* Let onRender handle renderer method calls*/
     }
 
     renderer->endDraw(); /* End Frame */

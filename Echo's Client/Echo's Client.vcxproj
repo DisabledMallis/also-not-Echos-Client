@@ -160,6 +160,7 @@
     <ClCompile Include="Client\Modules\Module.cpp" />
     <ClCompile Include="Client\Modules\Module\TabGui.cpp" />
     <ClCompile Include="Client\Modules\Module\TestMod.cpp" />
+    <ClCompile Include="Client\Modules\Module\Uninject.cpp" />
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="Math\Math.cpp" />
     <ClCompile Include="Memory\Hooks\Hook.cpp" />
@@ -178,6 +179,7 @@
     <ClInclude Include="Client\Modules\Module.h" />
     <ClInclude Include="Client\Modules\Module\TabGui.h" />
     <ClInclude Include="Client\Modules\Module\TestMod.h" />
+    <ClInclude Include="Client\Modules\Module\Uninject.h" />
     <ClInclude Include="Math\Math.h" />
     <ClInclude Include="Memory\Hooks\Hook.h" />
     <ClInclude Include="Memory\Hooks\Hook\Actor.h" />

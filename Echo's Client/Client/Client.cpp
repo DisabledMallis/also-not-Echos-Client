@@ -21,8 +21,15 @@ Client::Client(std::string name) {
 
 /* Module Includes */
 
-#include "Modules/Module/TestMod.h"
+/* Combat */
+/* Movement */
+/* Player */
+/* Visuals */
 #include "Modules/Module/TabGui.h"
+/* World */
+/* Other */
+#include "Modules/Module/TestMod.h"
+#include "Modules/Module/Uninject.h"
 
 /* */
 
@@ -64,7 +71,13 @@ void Client::init() {
 
 	/* Initialize Modules */
 
-	TabGui* TabGuiMod = new TabGui(this, other, "TabGui");
-
+	/* Combat */
+	/* Movement */
+	/* Player */
+	/* Visuals */
+	TabGui* TabGuiMod = new TabGui(this, visuals, "TabGui");
+	/* World */
+	/* Other */
 	TestMod* testMod = new TestMod(this, other, "Test Module");
+	Uninject* uninjectMod = new Uninject(this, other, "Uninject");
 }

@@ -22,6 +22,7 @@ public:
 
 bool once = false;
 std::vector<class _OffXC*> Components;
+std::vector<class _OffXC*> modComponents;
 
 Vec2 start = Vec2(10, 10);
 
@@ -56,6 +57,7 @@ void TabGui::onRender(class Renderer* renderer) {
 		updateAlpha();
 		
 		_RGBA textColour = _RGBA(200, 200, 200, alpha);
+		_RGBA greenColour = _RGBA(75, 155, 95, alpha);
 		_RGBA backgroundColour = _RGBA(30, 70, 115, alpha);
 
 		float tSize = instance->guiData()->GuiScale() * 10;
@@ -73,13 +75,10 @@ void TabGui::onRender(class Renderer* renderer) {
 		
 		for (auto C : client->categories) {
 			auto tComponent = ((Components.size() > ID) ? Components.at(ID) : nullptr);
-			if (tComponent == nullptr) {
-				Utils::DebugLogF(std::to_string(ID).c_str());
-				break;
-			}
+			if (tComponent == nullptr) break;
 
 			Vec2 tPos = Vec2(start.x, start.y + (ID * (tSize + yStretch)));
-			tPos.x = (tPos.x + (this->sCat && sCIndex == ID ? 5 : 0));
+			tPos.x = (tPos.x + (this->sCat && sCIndex == ID ? yStretch : 0));
 
 			tComponent->shiftX(tPos.x);
 
@@ -87,10 +86,51 @@ void TabGui::onRender(class Renderer* renderer) {
 
 			ID++;
 		}
+
+		if (sMod) {
+			ID = 0;
+			float rectLen = 0.f;
+			auto modules = client->categories.at(sCIndex)->modules;
+
+			for (auto M : modules) {
+				auto currLen = renderer->textWidth(std::wstring(M->name.begin(), M->name.end()), tSize);
+				if (currLen > rectLen) rectLen = currLen;
+			}
+
+			rectLen += 10.0f; /* Stretch Rect */
+
+			Vec2 startM = Vec2(start.x + catLen, start.y + (sCIndex * (tSize + yStretch)));
+			renderer->fillRectangle(startM, Vec2(startM.x + rectLen, startM.y + (modules.size() * (tSize + yStretch))), backgroundColour);
+
+			if (modComponents.size() <= 0) {
+				int cID = 0;
+				for (auto M : modules) {
+					modComponents.push_back(new _OffXC(cID, startM.x));
+					cID++;
+				}
+			}
+
+			for (auto M : modules) {
+				auto tComponent = ((modComponents.size() > ID) ? modComponents.at(ID) : nullptr);
+				if (tComponent == nullptr) break;
+
+				Vec2 tPos = Vec2(startM.x, startM.y + (ID * (tSize + yStretch)));
+				tPos.x = (tPos.x + (this->sMod && sMIndex == ID ? yStretch : 0));
+
+				tComponent->shiftX(tPos.x);
+
+				renderer->drawString(std::wstring(M->name.begin(), M->name.end()), tSize, Vec2(tComponent->offX, tPos.y), M->isEnabled ? greenColour : textColour);
+				ID++;
+			}
+		}
+		else {
+			if (modComponents.size() > 0) modComponents.clear();
+		}
 	}
 }
 
 void TabGui::onKey(uint64_t key, bool isDown, bool* cancelOrigin) {
+	if (!isEnabled || instance == nullptr || instance->minecraftGame() == nullptr || !(instance->minecraftGame()->canUseKeys)) return;
 	if (isDown) {
 		if (key == 0x27) { /* Right Arrow */
 			*cancelOrigin = true;
