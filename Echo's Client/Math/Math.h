@@ -136,25 +136,3 @@ public:
 		this->a = a;
 	}
 };
-
-class RGBA_FW1 {
-public:
-	float r;
-	float g;
-	float b;
-	float a;
-
-	RGBA_FW1(float r, float g, float b, float a = 255) {
-		//this->r = r; this->g = b; this->b = b; this->a = a;
-		this->b = r;
-		this->g = g;
-		this->r = b;
-	}
-	UINT32 toUint32() {
-		UINT32 _r = 255 * r;
-		UINT32 _b = 255 * b;
-		UINT32 _g = 255 * g;
-
-		return 0xFF000000 | _r | (_b << 16) | (_g << 8);
-	}
-};
