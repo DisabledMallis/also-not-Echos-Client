@@ -20,10 +20,6 @@ struct Vec2 {
 		this->x = x; this->y = y;
 	};
 
-	Vec2(_Vec2P v) {
-		this->x = *v.x; this->y = *v.y;
-	}
-
 	bool operator == (Vec2 v) { return v.x == x && v.y == y; };
 	bool operator != (Vec2 v) { return v.x != x || v.y != y; };
 };
