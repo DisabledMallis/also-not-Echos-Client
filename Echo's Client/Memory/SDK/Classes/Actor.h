@@ -383,6 +383,11 @@ public:
 		return reinterpret_cast<Vec2*>((uintptr_t)(this) + offset);
 	}
 
+	Vec3* velocity() {
+		static unsigned int offset = 0x4DC;
+		return reinterpret_cast<Vec3*>((uintptr_t)(this) + offset);
+	}
+
 	class PlayerInventory* getSupplies() {
 		static unsigned int offset = 0;
 		if (offset == NULL) {

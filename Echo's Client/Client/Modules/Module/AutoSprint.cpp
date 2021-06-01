@@ -1,5 +1,5 @@
 #include "AutoSprint.h"
 
 void AutoSprint::onGmTick(GameMode* GM) {
-	GM->player->setSprinting(true);
+	if (player->velocity()->magnitudexz() > 0.05f) player->setSprinting(true);
 }
