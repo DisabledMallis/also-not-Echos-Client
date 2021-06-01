@@ -59,6 +59,7 @@ void Client::init() {
 	Category* movement = new Category(this, "Movement");
 	Category* player = new Category(this, "Player");
 	Category* visuals = new Category(this, "Visuals");
+	Category* world = new Category(this, "World");
 	Category* other = new Category(this, "Other");
 
 	/* Initialize Modules */

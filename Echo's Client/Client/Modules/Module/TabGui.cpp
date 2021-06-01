@@ -20,12 +20,16 @@ public:
 	}
 };
 
+bool once = false;
+std::vector<class _OffXC*> Components;
+
 Vec2 start = Vec2(10, 10);
 
-void TabGui::onRender(class Renderer* renderer) {
-	static bool once = false;
-	static std::vector<class _OffXC*> Components;
+void TabGui::renderLogo(class Renderer* renderer) {
+	//
+}
 
+void TabGui::onRender(class Renderer* renderer) {
 	if (instance != nullptr && instance->guiData() != nullptr) {
 		int ID = 0;
 		if (!once) {
@@ -36,6 +40,7 @@ void TabGui::onRender(class Renderer* renderer) {
 			once = true;
 		}
 		ID = 0;
+		renderLogo(renderer);
 		
 		_RGBA textColour = _RGBA(200, 200, 200);
 		_RGBA backgroundColour = _RGBA(30, 70, 115);
