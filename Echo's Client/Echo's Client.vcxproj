@@ -158,6 +158,7 @@
     <ClCompile Include="Client\Categories\Category.cpp" />
     <ClCompile Include="Client\Client.cpp" />
     <ClCompile Include="Client\Modules\Module.cpp" />
+    <ClCompile Include="Client\Modules\Module\AirJump.cpp" />
     <ClCompile Include="Client\Modules\Module\AutoSprint.cpp" />
     <ClCompile Include="Client\Modules\Module\Killaura.cpp" />
     <ClCompile Include="Client\Modules\Module\TabGui.cpp" />
@@ -179,6 +180,7 @@
     <ClInclude Include="Client\Categories\Category.h" />
     <ClInclude Include="Client\Client.h" />
     <ClInclude Include="Client\Modules\Module.h" />
+    <ClInclude Include="Client\Modules\Module\AirJump.h" />
     <ClInclude Include="Client\Modules\Module\AutoSprint.h" />
     <ClInclude Include="Client\Modules\Module\Killaura.h" />
     <ClInclude Include="Client\Modules\Module\TabGui.h" />

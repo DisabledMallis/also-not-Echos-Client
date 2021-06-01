@@ -388,6 +388,13 @@ public:
 		return reinterpret_cast<Vec3*>((uintptr_t)(this) + offset);
 	}
 
+	bool* onGround() {
+		static unsigned int offset = 0;
+		if (offset == NULL)
+			offset = *reinterpret_cast<int*>(Utils::FindSig("0F B6 80 ? ? ? ? C3 CC CC CC CC 48 8B 41 ? F3") + 3);
+		return reinterpret_cast<bool*>((uintptr_t)(this) + offset);
+	}
+
 	class PlayerInventory* getSupplies() {
 		static unsigned int offset = 0;
 		if (offset == NULL) {
