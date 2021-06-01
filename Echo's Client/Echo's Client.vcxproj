@@ -160,8 +160,10 @@
     <ClCompile Include="Client\Modules\Module.cpp" />
     <ClCompile Include="Client\Modules\Module\AirJump.cpp" />
     <ClCompile Include="Client\Modules\Module\AutoSprint.cpp" />
+    <ClCompile Include="Client\Modules\Module\Coords.cpp" />
     <ClCompile Include="Client\Modules\Module\Hitbox.cpp" />
     <ClCompile Include="Client\Modules\Module\Killaura.cpp" />
+    <ClCompile Include="Client\Modules\Module\Step.cpp" />
     <ClCompile Include="Client\Modules\Module\TabGui.cpp" />
     <ClCompile Include="Client\Modules\Module\TestMod.cpp" />
     <ClCompile Include="Client\Modules\Module\Uninject.cpp" />
@@ -183,8 +185,10 @@
     <ClInclude Include="Client\Modules\Module.h" />
     <ClInclude Include="Client\Modules\Module\AirJump.h" />
     <ClInclude Include="Client\Modules\Module\AutoSprint.h" />
+    <ClInclude Include="Client\Modules\Module\Coords.h" />
     <ClInclude Include="Client\Modules\Module\Hitbox.h" />
     <ClInclude Include="Client\Modules\Module\Killaura.h" />
+    <ClInclude Include="Client\Modules\Module\Step.h" />
     <ClInclude Include="Client\Modules\Module\TabGui.h" />
     <ClInclude Include="Client\Modules\Module\TestMod.h" />
     <ClInclude Include="Client\Modules\Module\Uninject.h" />

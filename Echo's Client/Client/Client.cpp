@@ -27,7 +27,9 @@ Client::Client(std::string name) {
 /* Movement */
 #include "Modules/Module/AutoSprint.h"
 #include "Modules/Module/AirJump.h"
+#include "Modules/Module/Step.h"
 /* Player */
+#include "Modules/Module/Coords.h"
 /* Visuals */
 #include "Modules/Module/TabGui.h"
 /* World */
@@ -81,9 +83,11 @@ void Client::init() {
 	/* Movement */
 	AutoSprint* sprintMod = new AutoSprint(this, movement, "AutoSprint");
 	AirJump* airJumpMod = new AirJump(this, movement, "AirJump");
+	Step* stepMod = new Step(this, movement, "Step");
 	/* Player */
 	/* Visuals */
 	TabGui* TabGuiMod = new TabGui(this, visuals, "TabGui");
+	Coords* coordsMod = new Coords(this, visuals, "Coordinates");
 	/* World */
 	/* Other */
 	TestMod* testMod = new TestMod(this, other, "Test Module");

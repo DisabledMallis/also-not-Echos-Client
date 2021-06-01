@@ -395,6 +395,13 @@ public:
 		return reinterpret_cast<bool*>((uintptr_t)(this) + offset);
 	}
 
+	float* stepHeight() {
+		static unsigned int offset = 0;
+		if (offset == NULL)
+			offset = *reinterpret_cast<int*>(Utils::FindSig("F3 0F 10 ? ? ? ? ? C3 CC CC CC 48 8B 41 ? 88 90 ? ? ? ? C3") + 4);
+		return reinterpret_cast<float*>((uintptr_t)(this) + offset);
+	}
+
 	class PlayerInventory* getSupplies() {
 		static unsigned int offset = 0;
 		if (offset == NULL) {
