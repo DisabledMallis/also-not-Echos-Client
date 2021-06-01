@@ -6,15 +6,6 @@ public:
 	//
 };
 
-struct _Vec2P {
-	float* x;
-	float* y;
-
-	_Vec2P(float* x, float* y) {
-		this->x = x; this->y = y;
-	}
-};
-
 struct Vec2 {
 	union {
 		struct {
