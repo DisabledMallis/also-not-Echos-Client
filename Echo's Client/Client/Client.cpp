@@ -37,6 +37,8 @@ Client::Client(std::string name) {
 /* Visuals */
 #include "Modules/Module/TabGui.h"
 /* World */
+/* Exploits */
+#include "Modules/Module/Freecam.h"
 /* Other */
 #include "Modules/Module/TestMod.h"
 #include "Modules/Module/Uninject.h"
@@ -102,6 +104,8 @@ void Client::init() {
 	/* Visuals */
 	new TabGui(this, visuals, "TabGui");
 	/* World */
+	/* Exploits */
+	new Freecam(this, exploits, "Freecam");
 	/* Other */
 	new TestMod(this, other, "Test Module");
 	new Uninject(this, other, "Uninject");

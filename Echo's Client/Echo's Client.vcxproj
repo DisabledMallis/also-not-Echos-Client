@@ -161,6 +161,7 @@
     <ClCompile Include="Client\Modules\Module\AirJump.cpp" />
     <ClCompile Include="Client\Modules\Module\AutoSprint.cpp" />
     <ClCompile Include="Client\Modules\Module\Coords.cpp" />
+    <ClCompile Include="Client\Modules\Module\Freecam.cpp" />
     <ClCompile Include="Client\Modules\Module\Hitbox.cpp" />
     <ClCompile Include="Client\Modules\Module\Jetpack.cpp" />
     <ClCompile Include="Client\Modules\Module\Killaura.cpp" />
@@ -189,6 +190,7 @@
     <ClInclude Include="Client\Modules\Module\AirJump.h" />
     <ClInclude Include="Client\Modules\Module\AutoSprint.h" />
     <ClInclude Include="Client\Modules\Module\Coords.h" />
+    <ClInclude Include="Client\Modules\Module\Freecam.h" />
     <ClInclude Include="Client\Modules\Module\Hitbox.h" />
     <ClInclude Include="Client\Modules\Module\Jetpack.h" />
     <ClInclude Include="Client\Modules\Module\Killaura.h" />

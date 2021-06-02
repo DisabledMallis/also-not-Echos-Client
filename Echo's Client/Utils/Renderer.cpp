@@ -44,7 +44,7 @@ void Renderer::drawString(std::wstring t, float size, Vec2 pos, _RGBA rgb) {
 
     writeFactory->CreateTextFormat(L"Arial", NULL, DWRITE_FONT_WEIGHT_NORMAL, DWRITE_FONT_STYLE_NORMAL, DWRITE_FONT_STRETCH_NORMAL, size, L"", &textFormat);
     d2dRenderTarget->CreateSolidColorBrush(D2D1::ColorF(rgb.r, rgb.g, rgb.b, rgb.a), &brush);
-    d2dRenderTarget->DrawText(text, wcslen(text), textFormat, D2D1::RectF(pos.x, pos.y, pos.x + (width + 10), pos.y + height + 2), brush);
+    d2dRenderTarget->DrawText(text, wcslen(text), textFormat, D2D1::RectF(pos.x, pos.y, pos.x + (width * 2), pos.y + (height * 2)), brush);
     this->textFormat->Release();
     this->brush->Release();
 }
