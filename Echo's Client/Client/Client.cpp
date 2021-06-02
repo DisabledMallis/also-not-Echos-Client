@@ -73,23 +73,24 @@ void Client::init() {
 	Category* player = new Category(this, "Player");
 	Category* visuals = new Category(this, "Visuals");
 	Category* world = new Category(this, "World");
+	Category* exploits = new Category(this, "Exploits");
 	Category* other = new Category(this, "Other");
 
 	/* Initialize Modules */
 
 	/* Combat */
-	Killaura* killauraMod = new Killaura(this, combat, "Killaura");
-	Hitbox* hitboxMod = new Hitbox(this, combat, "Hitbox");
+	new Killaura(this, combat, "Killaura");
+	new Hitbox(this, combat, "Hitbox");
 	/* Movement */
-	AutoSprint* sprintMod = new AutoSprint(this, movement, "AutoSprint");
-	AirJump* airJumpMod = new AirJump(this, movement, "AirJump");
-	Step* stepMod = new Step(this, movement, "Step");
+	new AutoSprint(this, movement, "AutoSprint");
+	new AirJump(this, movement, "AirJump");
+	new Step(this, movement, "Step");
 	/* Player */
+	new Coords(this, player, "Coordinates");
 	/* Visuals */
-	TabGui* TabGuiMod = new TabGui(this, visuals, "TabGui");
-	Coords* coordsMod = new Coords(this, visuals, "Coordinates");
+	new TabGui(this, visuals, "TabGui");
 	/* World */
 	/* Other */
-	TestMod* testMod = new TestMod(this, other, "Test Module");
-	Uninject* uninjectMod = new Uninject(this, other, "Uninject");
+	new TestMod(this, other, "Test Module");
+	new Uninject(this, other, "Uninject");
 }
