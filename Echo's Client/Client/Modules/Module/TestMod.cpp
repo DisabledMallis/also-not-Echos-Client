@@ -45,7 +45,7 @@ void TestMod::onGmTick(GameMode* GM) {
 	else once = false;
 }
 
-void TestMod::onPacket(Packet* packet) {
+void TestMod::onPacket(Packet* packet, bool*) {
 	if (packet->instanceOf<MovePlayerPacket>()) {
 		/*static int packetID = 0;
 		auto curr = (MovePlayerPacket*)packet;
@@ -64,6 +64,20 @@ void TestMod::onPacket(Packet* packet) {
 		packetID++;*/
 	}
 	if (packet->instanceOf<PlayerAuthInputPacket>()) {
-		//Utils::DebugLogF("PlayerAuthInput Packet!");
+		static int packetID = 0;
+		auto curr = (MovePlayerPacket*)packet;
+
+		char mem[0x400];
+		memcpy(mem, packet, 0x400);
+
+		std::string fName = std::string("auth-" + std::to_string(packetID));
+		std::string path = getenv("APPDATA") + std::string("\\..\\Local\\Packages\\Microsoft.MinecraftUWP_8wekyb3d8bbwe\\RoamingState\\" + fName);
+
+		std::ofstream fout;
+		fout.open(path, std::ios::binary | std::ios::out);
+		fout.write(mem, 0x0400);
+		fout.close();
+
+		packetID++;
 	}
 }
