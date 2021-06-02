@@ -13,11 +13,11 @@ void TestMod::onTick() {
 }
 
 void TestMod::onKey(uint64_t key, bool isDown, bool* cancelOrigin) {
-	if (isDown) {
+	/*if (isDown) {
 		std::ostringstream o;
 		o << "Key Pressed Down: " << std::hex << key << std::endl;
 		Utils::DebugLogF(o.str().c_str());
-	}
+	}*/
 }
 
 void TestMod::onRender(class Renderer* renderer) {

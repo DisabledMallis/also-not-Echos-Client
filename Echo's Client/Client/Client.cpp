@@ -47,6 +47,8 @@ void Client::init() {
 
 	Hook::initMH(this); /* Initialize MinHook */
 
+	this->isRunning = true;
+
 	/* Initialize SwapChain (Dx11) Hook */
 
 	SwapChain_Hook* swapChain_Hook = new SwapChain_Hook();
@@ -97,4 +99,18 @@ void Client::init() {
 	/* Other */
 	new TestMod(this, other, "Test Module");
 	new Uninject(this, other, "Uninject");
+
+	/*modulesThread = std::thread([this] {
+		while (isRunning) {
+			for (auto C : this->categories) {
+				for (auto M : C->modules) M->baseTick();
+			}
+		}
+	});*/
+
+	while (isRunning) {
+		for (auto C : this->categories) {
+			for (auto M : C->modules) M->baseTick();
+		}
+	}
 }

@@ -10,22 +10,18 @@ Module::Module(class Client* client, class Category* category, std::string name,
 	this->key = key;
 
 	this->category->modules.push_back(this);
-
-	this->moduleThread = std::thread([this] { this->baseTick(); });
 }
 
 void Module::baseTick() {
-	while (true) {
-		onLoop();
-		if (isEnabled != wasEnabled) {
-			if (isEnabled) {
-				onEnable();
-			}
-			else {
-				onDisable();
-			}
-			wasEnabled = isEnabled;
+	onLoop();
+	if (isEnabled != wasEnabled) {
+		if (isEnabled) {
+			onEnable();
 		}
-		if(isEnabled) onTick();
+		else {
+			onDisable();
+		}
+		wasEnabled = isEnabled;
 	}
+	if (isEnabled) onTick();
 }

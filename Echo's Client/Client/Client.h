@@ -17,6 +17,8 @@ public:
 	std::vector<Category*> categories;
 	std::vector<Module*> modules;
 
+	//std::thread modulesThread;
+
 	Client(std::string name);
 
 	std::map<uint64_t, bool> keyMap;
