@@ -111,7 +111,6 @@ void TabGui::onRender(class Renderer* renderer) {
 					auto _this = new _OffXC(cID, startRect.x);
 					_this->offX = (_this->offX + (this->sMod && sMIndex == cID ? yStretch : 0));
 					modComponents.push_back(_this);
-					Utils::DebugLogF(M->name.c_str());
 					cID++;
 				}
 			}
