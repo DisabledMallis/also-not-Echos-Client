@@ -15,7 +15,7 @@ struct Vec2 {
 		float arr[2];
 	};
 
-	Vec2() { x = y = 0; };
+	//Vec2() { x = y = 0; };
 	
 	Vec2(float x = 0, float y = 0) {
 		this->x = x; this->y = y;
@@ -33,7 +33,7 @@ struct Vec3 {
 		float arr[3];
 	};
 
-	Vec3() { x = y = z = 0; };
+	//Vec3() { x = y = z = 0; };
 
 	Vec3(float x = 0, float y = 0, float z = 0) {
 		this->x = x; this->y = y; this->z = z;
@@ -110,7 +110,7 @@ struct Vec3i {
 		int arr[3];
 	};
 
-	Vec3i() { x = y = z = 0; };
+	//Vec3i() { x = y = z = 0; };
 
 	Vec3i(int x = 0, int y = 0, int z = 0) {
 		this->x = x; this->y = y; this->z = z;
