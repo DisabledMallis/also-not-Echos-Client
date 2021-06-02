@@ -19,6 +19,8 @@ Client::Client(std::string name) {
 
 #include "../Memory/Hooks/Hook/SwapChain.h"
 
+#include "../Memory/Hooks/Hook/LoopbackPacketSender.h"
+
 /* Module Includes */
 
 /* Combat */
@@ -69,6 +71,10 @@ void Client::init() {
 	/* Initialize AVKeyItem Hook */
 	KeyItem_Hook* key_Hook = new KeyItem_Hook();
 	key_Hook->init();
+
+	/* Initialize LoopbackPacketSender Hook */
+	Loopback_Hook* loop_Hook = new Loopback_Hook();
+	loop_Hook->init();
 
 	/* Initialize Categories */
 

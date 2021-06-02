@@ -176,6 +176,7 @@
     <ClCompile Include="Memory\Hooks\Hook\ClientInstance.cpp" />
     <ClCompile Include="Memory\Hooks\Hook\GameMode.cpp" />
     <ClCompile Include="Memory\Hooks\Hook\KeyItem.cpp" />
+    <ClCompile Include="Memory\Hooks\Hook\LoopbackPacketSender.cpp" />
     <ClCompile Include="Memory\Hooks\Hook\SwapChain.cpp" />
     <ClCompile Include="Memory\SDK\Minecraft.cpp" />
     <ClCompile Include="Utils\Renderer.cpp" />
@@ -202,6 +203,7 @@
     <ClInclude Include="Memory\Hooks\Hook\ClientInstance.h" />
     <ClInclude Include="Memory\Hooks\Hook\GameMode.h" />
     <ClInclude Include="Memory\Hooks\Hook\KeyItem.h" />
+    <ClInclude Include="Memory\Hooks\Hook\LoopbackPacketSender.h" />
     <ClInclude Include="Memory\Hooks\Hook\SwapChain.h" />
     <ClInclude Include="Memory\SDK\Classes\Actor.h" />
     <ClInclude Include="Memory\SDK\Classes\Block.h" />
@@ -212,7 +214,9 @@
     <ClInclude Include="Memory\SDK\Classes\GuiData.h" />
     <ClInclude Include="Memory\SDK\Classes\ItemStack.h" />
     <ClInclude Include="Memory\SDK\Classes\Level.h" />
+    <ClInclude Include="Memory\SDK\Classes\LoopbackPacketSender.h" />
     <ClInclude Include="Memory\SDK\Classes\MinecraftGame.h" />
+    <ClInclude Include="Memory\SDK\Classes\Packet.h" />
     <ClInclude Include="Memory\SDK\Classes\Player.h" />
     <ClInclude Include="Memory\SDK\Classes\PlayerInventory.h" />
     <ClInclude Include="Memory\SDK\Minecraft.h" />

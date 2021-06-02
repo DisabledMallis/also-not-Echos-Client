@@ -90,6 +90,9 @@
     <ClCompile Include="Client\Modules\Module\Jetpack.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Memory\Hooks\Hook\LoopbackPacketSender.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Utils\Utils.h">
@@ -198,6 +201,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Client\Modules\Module\Jetpack.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Memory\SDK\Classes\Packet.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Memory\SDK\Classes\LoopbackPacketSender.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Memory\Hooks\Hook\LoopbackPacketSender.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

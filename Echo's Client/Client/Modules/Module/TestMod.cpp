@@ -44,3 +44,12 @@ void TestMod::onGmTick(GameMode* GM) {
 	}
 	else once = false;
 }
+
+void TestMod::onPacket(Packet* packet) {
+	if (packet->instanceOf<MovePlayerPacket>()) {
+		Utils::DebugLogF("Move Packet!");
+	}
+	if (packet->instanceOf<PlayerAuthInputPacket>()) {
+		Utils::DebugLogF("PlayerAuthInput Packet!");
+	}
+}

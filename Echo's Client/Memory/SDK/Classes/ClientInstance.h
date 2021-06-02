@@ -11,6 +11,9 @@
 #include "Level.h"
 #include "Block.h"
 
+#include "LoopbackPacketSender.h"
+#include "Packet.h"
+
 class ClientInstance {
 public:
 	class Player* GetLocalPlayer() {
@@ -25,5 +28,12 @@ public:
 
 	class GuiData* guiData() {
 		return *reinterpret_cast<GuiData**>((uintptr_t)(this) + 0x4D8);
+	}
+
+	class LoopbackPacketSender* loopbackPacketSender() {
+		static unsigned int offset = 0;
+		if (offset == NULL)
+			offset = *reinterpret_cast<int*>(Utils::FindSig("48 8B 88 ? ? ? ? 48 8B D3 48 8B 01 48 83 C4 20") + 3); /* Offset in LoopbackPacketSender::flush */
+		return *reinterpret_cast<LoopbackPacketSender**>((uintptr_t)(this) + offset);
 	}
 };

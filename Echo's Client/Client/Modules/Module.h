@@ -36,6 +36,8 @@ public:
 
 	virtual void onRender(class Renderer*) {};
 
+	virtual void onPacket(class Packet*) {};
+
 	Module(class Client* client, class Category* category, std::string name, uint64_t key = 0);
 
 	ClientInstance* instance;
