@@ -121,7 +121,7 @@ void TabGui::onRender(class Renderer* renderer) {
 				auto tComponent = ((modComponents.size() > ID) ? modComponents.at(ID) : nullptr);
 				if (tComponent == nullptr) break;
 
-				Vec2 tPos = Vec2(startRect.x + 2, startRect.y + (ID * (tSize + yStretch)));
+				Vec2 tPos = Vec2(startRect.x, startRect.y + (ID * (tSize + yStretch)));
 				tPos.x = (tPos.x + (this->sMod && sMIndex == ID ? yStretch : 0));
 
 				tComponent->shiftX(tPos.x);
