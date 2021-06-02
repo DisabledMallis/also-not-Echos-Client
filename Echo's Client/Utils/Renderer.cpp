@@ -1,4 +1,10 @@
 #include "Renderer.h"
+#include "Utils.h"
+
+template <class T>
+void SR(T ptr) { /* Safe Release */
+    if(ptr != nullptr) ptr->Release();
+}
 
 void Renderer::init(IDXGISwapChain* pChain, ID3D11Device* pDevice, ID3D11DeviceContext* pContext) {
 
@@ -25,7 +31,7 @@ void Renderer::init(IDXGISwapChain* pChain, ID3D11Device* pDevice, ID3D11DeviceC
 }
 
 void Renderer::releaseTarget() {
-    if(this->d2dRenderTarget != nullptr) this->d2dRenderTarget->Release();
+    SR(d2dRenderTarget);
 }
 
 void Renderer::beginDraw() {
@@ -34,6 +40,8 @@ void Renderer::beginDraw() {
 
 void Renderer::endDraw() {
     d2dRenderTarget->EndDraw();
+    //SR(textFormat);
+    SR(brush);
 }
 
 void Renderer::drawString(std::wstring t, float size, Vec2 pos, _RGBA rgb) {
@@ -45,20 +53,17 @@ void Renderer::drawString(std::wstring t, float size, Vec2 pos, _RGBA rgb) {
     writeFactory->CreateTextFormat(L"Arial", NULL, DWRITE_FONT_WEIGHT_NORMAL, DWRITE_FONT_STYLE_NORMAL, DWRITE_FONT_STRETCH_NORMAL, size, L"", &textFormat);
     d2dRenderTarget->CreateSolidColorBrush(D2D1::ColorF(rgb.r, rgb.g, rgb.b, rgb.a), &brush);
     d2dRenderTarget->DrawText(text, wcslen(text), textFormat, D2D1::RectF(pos.x, pos.y, pos.x + (width * 2), pos.y + (height * 2)), brush);
-    this->textFormat->Release();
-    this->brush->Release();
+    SR(textFormat);
 }
 
 void Renderer::drawRectangle(Vec2 start, Vec2 end, _RGBA rgb, float lineWidth) {
     d2dRenderTarget->CreateSolidColorBrush(D2D1::ColorF(rgb.r, rgb.g, rgb.b, rgb.a), &brush);
     d2dRenderTarget->DrawRectangle(D2D1::RectF(start.x, start.y, end.x, end.y), brush, lineWidth);
-    this->brush->Release();
 }
 
 void Renderer::fillRectangle(Vec2 start, Vec2 end, _RGBA rgb) {
     d2dRenderTarget->CreateSolidColorBrush(D2D1::ColorF(rgb.r, rgb.g, rgb.b, rgb.a), &brush);
     d2dRenderTarget->FillRectangle(D2D1::RectF(start.x, start.y, end.x, end.y), brush);
-    this->brush->Release();
 }
 
 float Renderer::textWidth(std::wstring t, float size) {
@@ -71,8 +76,6 @@ float Renderer::textHeight(std::wstring text, float size) {
     return metrics.width;
 }
 
-#include "Utils.h"
-
 DWRITE_TEXT_METRICS Renderer::getTextMetrics(std::wstring t, float size) {
     const wchar_t* text = t.c_str();
     IDWriteTextLayout* layout = nullptr;
@@ -82,8 +85,8 @@ DWRITE_TEXT_METRICS Renderer::getTextMetrics(std::wstring t, float size) {
         DWRITE_TEXT_METRICS textMetrics;
         layout->GetMetrics(&textMetrics);
 
-        layout->Release();
-        this->textFormat->Release();
+        SR(layout);
+        SR(textFormat);
 
         return textMetrics;
     }
