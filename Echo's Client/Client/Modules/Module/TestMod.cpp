@@ -47,9 +47,23 @@ void TestMod::onGmTick(GameMode* GM) {
 
 void TestMod::onPacket(Packet* packet) {
 	if (packet->instanceOf<MovePlayerPacket>()) {
-		Utils::DebugLogF("Move Packet!");
+		/*static int packetID = 0;
+		auto curr = (MovePlayerPacket*)packet;
+
+		char mem[0x110];
+		memcpy(mem, packet, 0x110);
+
+		std::string fName = std::string("move-" + std::to_string(packetID));
+		std::string path = getenv("APPDATA") + std::string("\\..\\Local\\Packages\\Microsoft.MinecraftUWP_8wekyb3d8bbwe\\RoamingState\\" + fName);
+
+		std::ofstream fout;
+		fout.open(path, std::ios::binary | std::ios::out);
+		fout.write(mem, 0x0110);
+		fout.close();
+
+		packetID++;*/
 	}
 	if (packet->instanceOf<PlayerAuthInputPacket>()) {
-		Utils::DebugLogF("PlayerAuthInput Packet!");
+		//Utils::DebugLogF("PlayerAuthInput Packet!");
 	}
 }
