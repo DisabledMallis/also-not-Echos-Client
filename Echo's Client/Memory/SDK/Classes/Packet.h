@@ -12,18 +12,21 @@ public:
 
 class MovePlayerPacket : public Packet {
 private:
-	char pad_0008[32];        //0x0008
+	char pad_0008[40];  //0x0008
 public:
-	__int64 runtimeId;        //0x0028
-	Vec3 pos = Vec3(0, 0, 0); //0x0030
-	Vec2 rot = Vec2(0, 0);    //0x003C
-	float headYaw;            //0x0044
+	uint64_t runtimeId; //0x0030
+	Vec3 pos;           //0x0038
+	Vec2 rot;           //0x0044
+	float headYaw;      //0x004C
+	char pad_0050[60];  //0x0050
 
 	MovePlayerPacket() {
+		memset(this, 0, sizeof(this));
 		this->VTable = GetVTable();
 	}
 
 	MovePlayerPacket(__int64 runtimeId, Vec3 pos = Vec3(0, 0, 0), Vec2 bodyRot = Vec2(0, 0), float headYaw = 0) {
+		memset(this, 0, sizeof(this));
 		this->VTable = GetVTable();
 		this->runtimeId = runtimeId;
 		this->pos = pos;
