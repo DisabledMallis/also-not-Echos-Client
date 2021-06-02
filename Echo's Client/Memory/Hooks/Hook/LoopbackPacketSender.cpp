@@ -7,11 +7,12 @@ Loopback _Loopback;
 Client* lClient;
 
 void callback(LoopbackPacketSender* _this, Packet* packet) {
+	bool cancel = false;
 	for (auto C : lClient->categories) {
 		for (auto M : C->modules)
-			if (M->isEnabled) M->onPacket(packet);
+			if (M->isEnabled) M->onPacket(packet, &cancel);
 	}
-	_Loopback(_this, packet);
+	if(!cancel) _Loopback(_this, packet);
 }
 
 void Loopback_Hook::init() {
