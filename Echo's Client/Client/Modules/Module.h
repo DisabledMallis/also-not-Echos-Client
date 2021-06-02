@@ -36,7 +36,7 @@ public:
 
 	virtual void onRender(class Renderer*) {};
 
-	virtual void onPacket(class Packet*, bool* cancel = (bool)false) {};
+	virtual void onPacket(class Packet*, bool* cancel = (bool*)false) {};
 
 	Module(class Client* client, class Category* category, std::string name, uint64_t key = 0);
 
