@@ -28,6 +28,8 @@ Client::Client(std::string name) {
 #include "Modules/Module/AutoSprint.h"
 #include "Modules/Module/AirJump.h"
 #include "Modules/Module/Step.h"
+#include "Modules/Module/Speed.h"
+#include "Modules/Module/Jetpack.h"
 /* Player */
 #include "Modules/Module/Coords.h"
 /* Visuals */
@@ -85,6 +87,8 @@ void Client::init() {
 	new AutoSprint(this, movement, "AutoSprint");
 	new AirJump(this, movement, "AirJump");
 	new Step(this, movement, "Step");
+	new Speed(this, movement, "Speed");
+	new Jetpack(this, movement, "Jetpack");
 	/* Player */
 	new Coords(this, player, "Coordinates");
 	/* Visuals */

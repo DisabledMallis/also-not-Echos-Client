@@ -24,6 +24,8 @@ public:
 
 	void baseTick();
 
+	virtual void onLoop() {};
+
 	virtual void onEnable() {};
 	virtual void onDisable() {};
 	virtual void onTick() {};

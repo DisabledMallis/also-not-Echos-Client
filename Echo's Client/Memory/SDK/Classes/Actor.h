@@ -388,6 +388,13 @@ public:
 		return reinterpret_cast<Vec3*>((uintptr_t)(this) + offset);
 	}
 
+	Vec2* bodyRot() {
+		static unsigned int offset = 0;
+		if (offset == NULL)
+			offset = *reinterpret_cast<int*>(Utils::FindSig("F3 0F 10 89 ? ? ? ? 48 8B FA F3 0F 10 81 ? ? ? ? 48 8B D9") + 4);
+		return reinterpret_cast<Vec2*>((uintptr_t)(this) + offset);
+	}
+
 	bool* onGround() {
 		static unsigned int offset = 0;
 		if (offset == NULL)

@@ -16,6 +16,7 @@ Module::Module(class Client* client, class Category* category, std::string name,
 
 void Module::baseTick() {
 	while (true) {
+		onLoop();
 		if (isEnabled != wasEnabled) {
 			if (isEnabled) {
 				onEnable();
