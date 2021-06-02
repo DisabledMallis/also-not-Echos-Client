@@ -98,7 +98,7 @@ void TabGui::onRender(class Renderer* renderer) {
 			}
 
 			Vec2 startRect = Vec2(start.x + catLen, start.y + (sCIndex * (tSize + yStretch)));
-			Vec2 endRect = Vec2(startRect.x + rectLen, startRect.y + (modules.size() * (tSize + yStretch)));
+			Vec2 endRect = Vec2((startRect.x + rectLen + 5), startRect.y + (modules.size() * (tSize + yStretch)));
 
 			renderer->fillRectangle(startRect, endRect, backgroundColour);
 
@@ -111,6 +111,7 @@ void TabGui::onRender(class Renderer* renderer) {
 					auto _this = new _OffXC(cID, startRect.x);
 					_this->offX = (_this->offX + (this->sMod && sMIndex == cID ? yStretch : 0));
 					modComponents.push_back(_this);
+					Utils::DebugLogF(M->name.c_str());
 					cID++;
 				}
 			}
