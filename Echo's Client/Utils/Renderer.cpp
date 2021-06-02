@@ -2,8 +2,10 @@
 #include "Utils.h"
 
 template <class T>
-void SR(T* t) { /* Safe Release */
-    if(t) t->Release();
+void SAFE_RELEASE(T* t) {
+    if (t) {
+        t->Release();
+    }
 }
 
 void Renderer::init(IDXGISwapChain* pChain, ID3D11Device* pDevice, ID3D11DeviceContext* pContext) {
@@ -31,7 +33,7 @@ void Renderer::init(IDXGISwapChain* pChain, ID3D11Device* pDevice, ID3D11DeviceC
 }
 
 void Renderer::releaseTarget() {
-    SR(d2dRenderTarget);
+    SAFE_RELEASE(d2dRenderTarget);
 }
 
 void Renderer::beginDraw() {
@@ -50,22 +52,22 @@ void Renderer::drawString(std::wstring t, float size, Vec2 pos, _RGBA rgb) {
 
     writeFactory->CreateTextFormat(L"Arial", NULL, DWRITE_FONT_WEIGHT_NORMAL, DWRITE_FONT_STYLE_NORMAL, DWRITE_FONT_STRETCH_NORMAL, size, L"", &textFormat);
     d2dRenderTarget->CreateSolidColorBrush(D2D1::ColorF(rgb.r, rgb.g, rgb.b, rgb.a), &brush);
-    d2dRenderTarget->DrawText(text, wcslen(text), textFormat, D2D1::RectF(pos.x, pos.y, pos.x + (width * 2), pos.y + (height * 2)), brush);
-    
-    SR(textFormat);
-    SR(brush);
+    d2dRenderTarget->DrawText(text, wcslen(text), textFormat, D2D1::RectF(pos.x, pos.y, pos.x + 1000, pos.y + 1000), brush);
+
+    SAFE_RELEASE(textFormat);
+    SAFE_RELEASE(brush);
 }
 
 void Renderer::drawRectangle(Vec2 start, Vec2 end, _RGBA rgb, float lineWidth) {
     d2dRenderTarget->CreateSolidColorBrush(D2D1::ColorF(rgb.r, rgb.g, rgb.b, rgb.a), &brush);
     d2dRenderTarget->DrawRectangle(D2D1::RectF(start.x, start.y, end.x, end.y), brush, lineWidth);
-    SR(brush);
+    SAFE_RELEASE(brush);
 }
 
 void Renderer::fillRectangle(Vec2 start, Vec2 end, _RGBA rgb) {
     d2dRenderTarget->CreateSolidColorBrush(D2D1::ColorF(rgb.r, rgb.g, rgb.b, rgb.a), &brush);
     d2dRenderTarget->FillRectangle(D2D1::RectF(start.x, start.y, end.x, end.y), brush);
-    SR(brush);
+    SAFE_RELEASE(brush);
 }
 
 float Renderer::textWidth(std::wstring t, float size) {
@@ -87,8 +89,8 @@ DWRITE_TEXT_METRICS Renderer::getTextMetrics(std::wstring t, float size) {
         DWRITE_TEXT_METRICS textMetrics;
         layout->GetMetrics(&textMetrics);
 
-        SR(layout);
-        SR(textFormat);
+        SAFE_RELEASE(layout);
+        SAFE_RELEASE(textFormat);
 
         return textMetrics;
     }
