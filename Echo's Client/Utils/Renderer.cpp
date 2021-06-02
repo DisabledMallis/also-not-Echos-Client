@@ -2,8 +2,8 @@
 #include "Utils.h"
 
 template <class T>
-void SR(T ptr) { /* Safe Release */
-    if(ptr != nullptr) ptr->Release();
+void SR(T* t) { /* Safe Release */
+    if(t) t->Release();
 }
 
 void Renderer::init(IDXGISwapChain* pChain, ID3D11Device* pDevice, ID3D11DeviceContext* pContext) {
