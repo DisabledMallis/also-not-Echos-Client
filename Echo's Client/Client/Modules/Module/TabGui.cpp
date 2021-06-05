@@ -80,7 +80,7 @@ void TabGui::onRender(class Renderer* renderer) {
 			if (tComponent == nullptr) break;
 
 			Vec2 tPos = Vec2(start.x, start.y + (ID * (tSize + yStretch)));
-			tPos.x = (tPos.x + (this->sCat && !this->sMod && sCIndex == ID ? yStretch : 0));
+			tPos.x += (this->sCat && !this->sMod && sCIndex == ID ? yStretch : 0);
 
 			tComponent->shiftX(tPos.x);
 
