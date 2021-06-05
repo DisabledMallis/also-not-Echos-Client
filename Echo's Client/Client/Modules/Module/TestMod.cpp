@@ -40,6 +40,9 @@ void TestMod::onGmTick(GameMode* GM) {
 	if (player != nullptr) {
 		if (!once) {
 			once = true;
+			//MovePlayerPacket* packet = new MovePlayerPacket(player->getActorId(), *player->getPos(), *player->bodyRot());
+			//Utils::DebugLogF("Sending the packet..");
+			//instance->loopbackPacketSender()->send(packet);
 		}
 	}
 	else once = false;
@@ -47,7 +50,7 @@ void TestMod::onGmTick(GameMode* GM) {
 
 void TestMod::onPacket(Packet* packet, bool*) {
 	if (packet->instanceOf<MovePlayerPacket>()) {
-		/*static int packetID = 0;
+		static int packetID = 0;
 		auto curr = (MovePlayerPacket*)packet;
 
 		char mem[0x110];
@@ -61,10 +64,10 @@ void TestMod::onPacket(Packet* packet, bool*) {
 		fout.write(mem, 0x0110);
 		fout.close();
 
-		packetID++;*/
+		packetID++;
 	}
 	if (packet->instanceOf<PlayerAuthInputPacket>()) {
-		static int packetID = 0;
+		/*static int packetID = 0;
 		auto curr = (MovePlayerPacket*)packet;
 
 		char mem[0x400];
@@ -78,6 +81,6 @@ void TestMod::onPacket(Packet* packet, bool*) {
 		fout.write(mem, 0x0400);
 		fout.close();
 
-		packetID++;
+		packetID++;*/
 	}
 }
