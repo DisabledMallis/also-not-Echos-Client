@@ -25,19 +25,19 @@ public:
 		this->VTable = GetVTable();
 	}
 
-	MovePlayerPacket(__int64 runtimeId, Vec3 pos = Vec3(0, 0, 0), Vec2 bodyRot = Vec2(0, 0), float headYaw = 0) {
+	MovePlayerPacket(__int64 runtimeId, Vec3 pos, Vec2 bodyRot, float headYaw = 0) {
 		memset(this, 0, sizeof(this));
 		this->VTable = GetVTable();
 		this->runtimeId = runtimeId;
 		this->pos = pos;
 		this->rot = bodyRot;
-		this->headYaw = headYaw;
+		this->headYaw = headYaw ? headYaw : bodyRot.y;
 	}
 
 	uintptr_t** GetVTable() {
 		static uintptr_t** vtable = nullptr;
-		if (vtable == nullptr) {
-			auto sig = Utils::FindSig("48 8D 05 ? ? ? ? 48 89 01 48 8B 82 ? ? ? ? 48 89 41 ? 48 8B 02 48 8B CA");
+		if (vtable == nullptr) { //
+			auto sig = Utils::FindSig("48 8D 05 ? ? ? ? 48 89 01 48 89 51 ? 48 83 C1 ? 49 8B D0 E8 ? ? ? ? 89");
 			int offset = *reinterpret_cast<int*>(sig + 3);
 			vtable = reinterpret_cast<uintptr_t**>(sig + offset + 7);
 		}
@@ -54,7 +54,7 @@ public:
 	uintptr_t** GetVTable() {
 		static uintptr_t** vtable = nullptr;
 		if (vtable == nullptr) {
-			auto sig = Utils::FindSig("48 8D 05 ? ? ? ? 48 89 01 F2 0F 10 42 ? F2 0F 11 41 30");
+			auto sig = Utils::FindSig("48 8D 05 ? ? ? ? 48 8B D9 48 89 01 48 81 C1 ? ? ? ? E8 ? ? ? ? 48 8B BB ? ? ? ? 48 85 FF ");
 			int offset = *reinterpret_cast<int*>(sig + 3);
 			vtable = reinterpret_cast<uintptr_t**>(sig + offset + 7);
 		}
